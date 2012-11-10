@@ -8,7 +8,7 @@ var apptime = 1;
 var nextUpdate = 1000;
 function heartbeat() {
 	apptime += 10;
-	var addr = "studentq/getstate";
+	var addr = "/studentq/getstate";
 	if (apptime > nextUpdate && nextUpdate > 0) {
 		nextUpdate = -1;
 		$.ajax({
@@ -16,11 +16,11 @@ function heartbeat() {
 			dataType : "json",
 			success: function(data) {
 				appUpdateProc(data);
-				nextUpdate = apptime + 20000;
+				nextUpdate = apptime + 5000;
 			},
 			error : function(jqXHR, textStatus, errorThrown) {
 				appUpdateProc(undefined, errorThrown);
-				nextUpdate = apptime + 50000;
+				nextUpdate = apptime + 10000;
 			}
 		});
 	}

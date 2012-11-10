@@ -1,12 +1,5 @@
 {% extends "fbcore/base.html" %}
 
-{% block scripts %}
-	<script src="../static/js/application.js"></script>
-    <script type="text/javascript">
-    	appUpdateProc = updateApplicationState;
-    </script>
-{% endblock %}
-
 {% block content %}    
 	<div class="navbar navbar-fixed-top">  
 		<div class="navbar-inner">  
@@ -18,22 +11,12 @@
 			</a>  
 				<div class="nav-collapse">  
 					<ul class="nav">  
-					<li class="active"><a href="#">Clarrifications</a></li>  
-					<li><a href="#about">Challenges</a></li>  
+						{% block menu %} {% endblock %}
 					</ul>  
 				</div><!--/.nav-collapse -->  
 			</div>  
 		</div>  
 	</div>  
-	
-  <div>
-  	<div class="question-template" style="display: none;">
-        <div class="text"></div>
-        <div class="votes"></div>
-        <button id="upvote" data-loading-text="+" class="btn btn-info">+</button></p>
-        <button id="downvote" data-loading-text="-" class="btn btn-info">-</button></p>        
-    </div>
-  </div>
 
   <div class="container-fluid">
 		<div class="row"><br>  
@@ -48,9 +31,6 @@
     </div>
   </div>
   
-  <div>TEST:</div>
-  <div id="callNo"></div>
-  <div id="appstate"></div>
-  <div id="window"></div>
+  {% block footer %} {% endblock %}
 
 {% endblock %}
