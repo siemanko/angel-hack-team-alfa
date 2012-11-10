@@ -1,9 +1,17 @@
 {% extends "fbcore/index.html" %}
 
+This is teacher's panel.
 {% block content %}
-<a href='askquestion/'>Ask question</a>
-<br>
-This is teacher.
+<a href='askquestion/'>Ask a new question</a>
+
+<br><br>
+
+{% for id, question in questions.items %}
+    <a href="showanswers/?id={{ id }}">
+    	{{ question }}
+    </a><br>
+{% endfor %}
+
 {% endblock %}
 
 

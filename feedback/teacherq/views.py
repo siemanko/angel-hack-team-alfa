@@ -5,7 +5,13 @@ from django.template import Context, loader, RequestContext
 from teacherq.models import Question, AnswerOption, ActiveQuestion
 
 def index(request):
-    return render_to_response('teacherq/index.html', {})
+	questions = {}
+
+	for question in Question.objects.all():
+		questions[question.id] = question.question
+
+	return render_to_response('teacherq/index.html', 
+		{"questions" : questions})
 
 def askquestion(request):
 	return render_to_response('teacherq/ask_question.html', {})
@@ -32,3 +38,17 @@ def viewquestion(request):
 	active_question = ActiveQuestion.objects.get()
 	return render(request, 'teacherq/viewactive.html', {'active_question': active_question})
  
+def showanswers(request):
+ 	id = request.GET['id']
+
+ 	question = Question.objects.get(id=id)
+ 
+	answers = []
+
+ 	for ans in AnswerOption.objects.filter(question__id=id):
+ 	 	answers.append(ans.answer)
+
+ 	return render(request, 'teacherq/show_answers.html', {
+ 		'question' : question.question,
+ 		'answers': answers,
+ 		})

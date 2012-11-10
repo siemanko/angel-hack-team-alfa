@@ -8,7 +8,7 @@ var apptime = 1;
 var nextUpdate = 1000;
 function heartbeat() {
 	apptime += 10;
-	var addr = "/studentq/getstate";
+	var addr = "studentq/getstate";
 	if (apptime > nextUpdate && nextUpdate > 0) {
 		nextUpdate = -1;
 		$.ajax({
