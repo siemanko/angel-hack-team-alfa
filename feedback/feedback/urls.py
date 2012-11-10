@@ -17,6 +17,8 @@ urlpatterns = patterns('',
     url(r'^(?:index)?$', 'fbcore.views.index'),
     url(r'^studentq/', include('studentq.urls')),
     url(r'^teacherq/', include('teacherq.urls')),
+    url(r'^login$', 'fbcore.views.login', name='login'),
+    url(r'^logout$', 'fbcore.views.logout'),
 )
 
 urlpatterns += patterns('',

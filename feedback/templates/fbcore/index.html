@@ -13,7 +13,17 @@
                         <a class="brand" href="#"><img src="" width="111" alt="w3resource logo" /></a>  
                                 <div class="nav-collapse">  
                                         <ul class="nav">  
-                                                {% block menu %} {% endblock %}
+                                                {% block menu %} 
+                                                  <li class="active">
+	                                                  <a href="/studentq/">Student Questions</a>
+                                                  </li>  
+                                                  <li> 
+	                                                  <a href="/teacherq/">Challenges</a>
+                                                  </li>  
+                                                  <li>
+	                                                  <a href="/logout">Log out</a>
+                                                  </li>  
+                                                {% endblock %}
                                         </ul>  
                                 </div><!--/.nav-collapse -->  
                         </div>  
@@ -24,7 +34,9 @@
                 <div class="row"><br>
       <div id="right_container" class="span12 al-element">
         {% block specific_content %}  
-          test
+          {% if is_teacher %}
+            We have badass over here.
+          {% endif %}
         {% endblock %}
         </div>
       </div>
