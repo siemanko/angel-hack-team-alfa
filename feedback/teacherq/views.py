@@ -1,8 +1,9 @@
+import json
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response, get_object_or_404, render
 from django.template import Context, loader, RequestContext
-from teacherq.models import Question, AnswerOption, ActiveQuestion
+from teacherq.models import Question, AnswerOption, ActiveQuestion, User
 
 def index(request):
 	questions = {}
@@ -71,3 +72,17 @@ def showanswers(request):
  		'question' : question.question,
  		'answers': answers,
  		})
+
+def confusedstudents(request):
+	confused_users = User.objects.Count(is_confused=True)
+	smart_users = User.objects.Count(is_confused=False)
+	total = smart_users + confused_users
+
+	response = { 'countConfused': confused_users,
+				 'countTotal': total }
+	return HttpResponse(json.dumps(response), mimetype='application/json')
+
+
+def showconfusion(request):
+	return render(request, 'teacherq/showconfusion.html', {} )
+
