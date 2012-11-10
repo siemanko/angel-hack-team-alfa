@@ -8,6 +8,7 @@ urlpatterns = patterns('',
 	url(r'^askquestion/$', views.askquestion, name='askquestion'),
 	url(r'^askquestion/submitquestion$', views.submitquestion, name='submitquestion'),
 	url(r'^viewactive/$', views.viewquestion, name='viewquestion'),
+	url(r'^viewactive/submitanswer$', views.submitanswer, name='submitanswer'),
 	url(r'^showanswers/$', views.showanswers, name='showanswers'),
 )
 

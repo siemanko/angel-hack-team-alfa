@@ -46,6 +46,13 @@ def viewquestion(request):
 			'answer_options': answer_options
 		})
  
+def submitanswer(request):
+	id = request.GET['answer']
+	answer = AnswerOption.objects.get(id=id)
+	answer.count = answer.count + 1
+	answer.save()
+	return HttpResponse('question answered')
+
 
 def showanswers(request):
  	id = request.GET['id']
