@@ -25,5 +25,6 @@ class ActiveQuestion(models.Model):
 class User(models.Model):
 		name = models.CharField(max_length=200)
 		is_logged_in = models.BooleanField()
+                is_teacher = models.BooleanField()
 		is_confused = models.BooleanField()
 
