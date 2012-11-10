@@ -73,3 +73,70 @@ body {
 }
 
 
+.ask_question {
+        border-radius: 8px;
+        border: solid;
+        border-width: 4px;
+        border-color: rgba(210,226,233,.8);
+        position: absolute;
+        width: 850px;
+        height: 410px;
+        left: 20%;
+        top: 30%;
+        background-color: rgba(222,236,243,.8);
+        box-shadow: 10px 10px 10px #AAAABB;
+        padding-left: 35px;
+        padding-top: 30px;
+}
+ 
+.ask_question textarea, input {
+        font-size: 20px;
+        font-family: "Fabada";
+        resize: none;
+        display:block;
+}
+ 
+.ask_question #question {
+        width: 800px;
+        height: 120px;
+        padding-top: -20px;
+}
+ 
+.ask_question .options {
+        position: relative;
+        top: 10px;
+}
+ 
+.ask_question .options div {
+        height: 50px;
+ 
+}
+ 
+.ask_question #letters {
+        position: relative;
+        float: left;
+        left: 10px;
+        top: 5px;
+}
+ 
+.ask_question #inputs {
+        position: relative;
+        left: 30px;
+        float: left;
+}
+ 
+.ask_question #inputs input {
+        height: 25px;
+        font-size: 20px;
+        width: 650px;
+}
+ 
+.ask_question button {
+        font-size: 22px;
+        height: 35px;
+        font-family: "Fabada";
+        position:relative;
+        top:164px;
+        left:630px;
+}
+
