@@ -76,10 +76,10 @@ def showanswers(request):
 def confusedstudents(request):
 	confused_users = User.objects.Count(is_confused=True)
 	smart_users = User.objects.Count(is_confused=False)
-	total = smart_users + confused_users
+	total_users = confused_users + smart_users
+	confusion_level = confused_users * 100 / total_users
 
-	response = { 'countConfused': confused_users,
-				 'countTotal': total }
+	response = { 'confusionLevel': confusionLevel }
 	return HttpResponse(json.dumps(response), mimetype='application/json')
 
 
