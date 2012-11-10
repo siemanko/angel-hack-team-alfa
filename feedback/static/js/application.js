@@ -2,6 +2,7 @@ var appUpdateProc; //update function
 
 $(document).ready(function() {
 	heartbeat();
+	attentionButton(false);
 });
 
 var apptime = 1;
@@ -25,6 +26,27 @@ function heartbeat() {
 		});
 	}
 	setTimeout(heartbeat, 10);
+}
+
+function attentionButton(change) {
+$.ajax({
+	type: 'GET',
+	url: "/studentq/updateattention",
+	data: {
+		"change" : change,
+	},
+	success: function(data) {
+		if (data.isConfused) {
+			$("#npa").css("color", "red");
+		} else {
+			$("#npa").css("color", "grey");
+		}
+		updateNow();
+	},
+		error: function(jqXHR, textStatus, errorThrown) {
+			alert(errorThrown);
+		}
+});
 }
 
 function addQuestion(text) {
@@ -59,26 +81,6 @@ function voteQuestion(qid,qpoint) {
 		},
   		error: function(jqXHR, textStatus, errorThrown) {
   			alert("Cannot save");
-  		}
-	});
-}
-
-function attentionButtonClicked(ctx) {
-	$.ajax({
-		type: 'POST',
-		url: "/studentq/updateattention",
-		data: {
-		},
-		success: function(data) {
-			if (data.isConfused) {
-				$("#npa").css("color", "red");
-			} else {
-				$("#npa").css("color", "grey");
-			}
-			updateNow();
-		},
-  		error: function(jqXHR, textStatus, errorThrown) {
-  			alert(errorThrown);
   		}
 	});
 }

@@ -45,9 +45,11 @@ def updatestate(request):
       return HttpResponse('OK')
       
 def updateattention(req):
-  user = User.object.get()
-  user.is_confused = ~user.is_confused
-  user.save()
+  user = User.objects.get()
+
+  if req.GET["change"] == "true":
+    user.is_confused = not user.is_confused
+    user.save()
 
   response = { "isConfused" : user.is_confused}
 
