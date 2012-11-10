@@ -49,12 +49,12 @@ $.ajax({
 });
 }
 
-function addQuestion(text) {
+function addQuestion(textcontent) {
 	$.ajax({
 		type: 'POST',
 		url: "/studentq/updatestate",
 		data: {
-			action : "addquestion",
+			action : "add",
 			text : textcontent
 		},
 		success: function(data) {

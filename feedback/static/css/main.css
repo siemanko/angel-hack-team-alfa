@@ -38,19 +38,18 @@ body {
 	width: 40px;
 	top: 10px;
 	left: 847px;
-	font-size: 35px;
+	font-size: 50px;
 }
 
 .question .controls .votes {
 	position: relative;
-	left: -70px;
-	top: 36px;
+	left: -130px;
+	top: 15px;
 	font-family: "Fabada";
-	font-size: 50px;
+	font-size: 100px;
 }
 .question .controls .downvote {
 	position:relative;
-	top: -7px;
 
 }
 
