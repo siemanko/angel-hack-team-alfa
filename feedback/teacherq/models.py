@@ -15,3 +15,7 @@ class AnswerOption(models.Model):
 		def __unicode__(self):
 			return self.question.__unicode__() + self.answer
 
+class ActiveQuestion(models.Model):
+		question = models.ForeignKey(Question)
+		def __unicode__(self):
+			return self.question.__unicode__()
