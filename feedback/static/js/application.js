@@ -85,6 +85,23 @@ function voteQuestion(qid,qpoint) {
 	});
 }
 
+function markAnswered(qid) {
+	$.ajax({
+		type: 'POST',
+		url: "/studentq/updatestate",
+		data: {
+			action : "mark",
+			id : qid
+		},
+		success: function(data) {
+			updateNow();
+		},
+  		error: function(jqXHR, textStatus, errorThrown) {
+  			alert("Cannot save");
+  		}
+	});
+}
+
 function updateNow() {
 	nextUpdate = apptime+1;
 }
@@ -94,7 +111,11 @@ function updateApplicationState(data,error) {
 	var questions = state.questions;
 console.log(questions.length);
 	
-	questions.sort(function(q1,q2) { return q2.votescore - q1.votescore; });
+	questions.sort(function(q1,q2) { 
+		var q1s = q1.is_answered ? -1000 : q1.votescore; 
+		var q2s = q2.is_answered ? -1000 : q2.votescore;
+		return q2s - q1s; 
+	});
 	
 	var elements = [];
 	questions.forEach(function(question) {
@@ -111,22 +132,37 @@ console.log(questions.length);
 		qdiv.find(".downvote").click(function() {
 			voteQuestion(id,-1);
 		});
+		qdiv.find(".markanswer").click(function() {
+			markAnswered(id);
+		});
 		
 		qdiv.attr("class", "question");
 		qdiv.addClass("q-"+id);
 		
 		if (qNode.size() > 0) {
 			qdiv.show();
-			if (question.votescore <= 0) {
+			if (question.is_answered) {
+				qdiv.css({ opacity: 0.5 });
+				qdiv.css("background", "#DDFFDD");
+				qdiv.find(".controls").hide();
+				qdiv.find(".teacher_controls").hide();
+			} else if (question.votescore <= 0) {
 				qdiv.css({ opacity: 0.5 });
 				qdiv.find(".votes").css("color", "red");
+				qdiv.css("background", "#FFDDDD");
 			} 
 		} else {
-			if (question.votescore > 0) {
-				qdiv.fadeIn(1000);
-			} else {
+			if (question.is_answered) {
+				qdiv.fadeTo(1000, 0.5);
+				qdiv.css("background", "#DDFFDD");
+				qdiv.find(".controls").hide();
+				qdiv.find(".teacher_controls").hide();
+			} else if (question.votescore <= 0) {
 				qdiv.fadeTo(1000, 0.5);
 				qdiv.find(".votes").css("color", "red");
+				qdiv.css("background", "#FFDDDD");
+			} else {
+				qdiv.fadeIn(1000);
 			}
 		}
 		elements.push(qdiv);
