@@ -35,16 +35,19 @@ def submitquestion(request):
 	#return render_to_response('teacherq/index.html', {})
 
 def viewquestion(request):
-	active_question = ActiveQuestion.objects.get()
+	params = {}
 
+	try:
+		active_question = ActiveQuestion.objects.get()
+		answer_options = AnswerOption.objects.filter(question=active_question)
+		params = {
+				'active_question': active_question,
+				'answer_options': answer_options
+				}
+	except Exception, e:
+		pass
 
- 	answer_options = AnswerOption.objects.filter(question=active_question)
-	
-	return render(request, 'teacherq/viewactive.html',
-		{
-			'active_question': active_question,
-			'answer_options': answer_options
-		})
+	return render(request, 'teacherq/viewactive.html', params)
  
 def submitanswer(request):
 	id = request.GET['answer']
