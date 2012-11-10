@@ -20,3 +20,9 @@ class ActiveQuestion(models.Model):
 		question = models.ForeignKey(Question)
 		def __unicode__(self):
 			return self.question.__unicode__()
+
+
+class User(models.Model):
+		is_logged_in = models.BooleanField()
+		is_confused = models.BooleanField()
+

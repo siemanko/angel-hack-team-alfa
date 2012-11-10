@@ -12,7 +12,10 @@ This is teacher's panel.<br>
 
 <br><br>
 
-<img src="//chart.googleapis.com/chart?chs=320x225&cht=p&chd=s:GECD&chdl=a|b|c|d&chp=0.3" width="320" height="225" alt="" />
+<a href='viewactive/'>Answer a question</a>
+
+<br><br>
+
 {% for id, question in questions.items %}
     <a href="showanswers/?id={{ id }}">
     	{{ question }}

@@ -1,36 +1,48 @@
 {% extends "fbcore/base.html" %}
-
+ 
 {% block content %}    
-	<div class="navbar navbar-fixed-top">  
-		<div class="navbar-inner">  
-			<div class="container">  
-			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">  
-				<span class="icon-bar"></span>  
-				<span class="icon-bar"></span>  
-				<span class="icon-bar"></span>  
-			</a>  
-				<div class="nav-collapse">  
-					<ul class="nav">  
-						{% block menu %} {% endblock %}
-					</ul>  
-				</div><!--/.nav-collapse -->  
-			</div>  
-		</div>  
-	</div>  
+        {}
+        <div class="navbar navbar-fixed-top">  
+                <div class="navbar-inner">  
+                        <div class="container">  
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">  
+                                <span class="icon-bar"></span>  
+                                <span class="icon-bar"></span>  
+                                <span class="icon-bar"></span>  
+                        </a>  
+                        <a class="brand" href="#"><img src="" width="111" alt="w3resource logo" /></a>  
+                                <div class="nav-collapse">  
+                                        <ul class="nav">  
+                                                {% block menu %} {% endblock %}
+                                        </ul>  
+                                </div><!--/.nav-collapse -->  
+                        </div>  
+                </div>  
+        </div>  
 
   <div class="container-fluid">
-		<div class="row"><br>  
-      <div class="span5" id ="left_container"><br>  
+                <div class="row"><br>
+      {% block chujoza %}
+      <div class="span5 al-element" id ="left_container"><br>  
         inline elements like span, block level elements like p, div.<br>  
-      </div><br>  
-      <div class="span12" id="right_container"><br>  
-        
-
-        inline elements like span, block level elements like p, div.aaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaa aaaaaaaa aaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaa aaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaa aaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa<br>  
+      </div><br> 
+      {% endblock %} 
+      <div id="right_container" class="span12 al-element">
+        {% block specific_content %}  
+          test
+        {% endblock %}
+        </div>
       </div>
     </div>
   </div>
-  
-  {% block footer %} {% endblock %}
+ 
+ 
+        {% block footer %}
+
+        <footer>  
+                <p>© Company 2012aaaaa</p>  
+        </footer>
+        {% endblock %}
 
 {% endblock %}
+

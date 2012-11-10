@@ -3,14 +3,14 @@
 <h1> Answer Question </h1>
 
 
-<form action="submitquestion" method="get">
+<form action="submitanswer" method="get">
 	Question: {{ active_question.question }}
 	
 	<br><br>
 
 
 	{% for ao in answer_options %}
-	<input type="radio" name="answer" value="{{ ao.answer }}" /><br>
+	<input type="radio" name="answer" value="{{ ao.id }}" /> {{ ao.answer }} <br>
 	{% endfor %}
 
 	<input type="submit" value="Submit" />
