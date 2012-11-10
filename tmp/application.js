@@ -34,10 +34,39 @@ function updateApplicationState(data) {
 	
 }
 
-function addQuestion(text) {
+function addQuestion(textcontent) {
+	$.ajax({
+		type: 'POST',
+		url: "studentq/addQuestion,
+		data: {
+			text : textcontent
+		},
+		success: function(data) {
+			alert("ok - question added");
+			updateNow();
+		},
+  		error: function(jqXHR, textStatus, errorThrown) {
+  			alert("Cannot save");
+  		}
+	});
 }
 
-function voteQuestion() {
+function voteQuestion(qid,qpoint) {
+	$.ajax({
+		type: 'POST',
+		url: "studentq/voteQuestion,
+		data: {
+			id : qid,
+			points : qpoint
+		},
+		success: function(data) {
+			alert("ok - voted");
+			updateNow();
+		},
+  		error: function(jqXHR, textStatus, errorThrown) {
+  			alert("Cannot save");
+  		}
+	});
 }
 
 function updateNow() {
