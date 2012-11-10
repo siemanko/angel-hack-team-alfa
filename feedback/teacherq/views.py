@@ -5,7 +5,12 @@ from django.template import Context, loader, RequestContext
 from teacherq.models import Question
 
 def index(request):
-    return render_to_response('teacherq/index.html', {})
+	questions = {}
+
+	for question in Question.objects.all():
+		questions[question.id] = question.question
+
+	return render_to_response('teacherq/index.html', questions)
 
 def askquestion(request):
 	return render_to_response('teacherq/ask_question.html', {})
