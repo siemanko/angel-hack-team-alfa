@@ -1,0 +1,21 @@
+{
+	"state" : {
+		"questions" : [
+			{
+				"id" : 1,
+				"text" : "Does Windows 8 sucks more than 7?",
+				"votescore" : 10
+			},
+			{
+				"id" : 2,
+				"text" : "What am i doing here?",
+				"votescore" : 3
+			},
+			{
+				"id" : 3,
+				"text" : "Does Petr exist?",
+				"votescore" : 7
+			}
+		]
+	}
+}
