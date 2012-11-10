@@ -1,7 +1,13 @@
 {% extends "fbcore/base.html" %}
 
-{% block content %}
+{% block scripts %}
+	<script src="../static/js/application.js"></script>
+    <script type="text/javascript">
+    	appUpdateProc = updateApplicationState;
+    </script>
+{% endblock %}
 
+{% block content %}    
 	<div class="navbar navbar-fixed-top">  
 		<div class="navbar-inner">  
 			<div class="container">  
@@ -19,6 +25,15 @@
 			</div>  
 		</div>  
 	</div>  
+	
+  <div>
+  	<div class="question-template" style="display: none;">
+        <div class="text"></div>
+        <div class="votes"></div>
+        <button id="upvote" data-loading-text="+" class="btn btn-info">+</button></p>
+        <button id="downvote" data-loading-text="-" class="btn btn-info">-</button></p>        
+    </div>
+  </div>
 
   <div class="container-fluid">
 		<div class="row"><br>  
@@ -26,16 +41,16 @@
         inline elements like span, block level elements like p, div.<br>  
       </div><br>  
       <div class="span12" id="right_container"><br>  
-        <div class "question">
-          <div class "text"></div>
-          <div class "votes"></div>
-          <button id="upvote" data-loading-text="+" class="btn btn-info">+</button></p>
-          <button id="downvote" data-loading-text="-" class="btn btn-info">-</button></p>        
-        </div>
+        
 
         inline elements like span, block level elements like p, div.aaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaa aaaaaaaa aaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaa aaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaa aaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa<br>  
       </div>
     </div>
   </div>
+  
+  <div>TEST:</div>
+  <div id="callNo"></div>
+  <div id="appstate"></div>
+  <div id="window"></div>
 
 {% endblock %}

@@ -22,7 +22,7 @@
 	<!-- live reload --> 
 	<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=2"></' + 'script>')</script>
 
-	{% block content %}
+  {% block content %}
     example content
   {% endblock %}
 
@@ -32,7 +32,7 @@
   <!-- Placed at the end of the document so the pages load faster -->  
 	<script src="static/js/jquery-latest.js"></script>  
 	<script src="static/js/bootstrap.min.js"></script>  
-
+  {% block scripts %}{% endblock %}
 </body>  
 
 </html>  

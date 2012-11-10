@@ -7,5 +7,6 @@ urlpatterns = patterns('',
     url(r'^$', 'teacherq.views.index'),
 	url(r'^askquestion/$', views.askquestion, name='askquestion'),
 	url(r'^askquestion/submitquestion$', views.submitquestion, name='submitquestion'),
+	url(r'^viewactive/$', views.viewquestion, name='viewquestion'),
 )
 

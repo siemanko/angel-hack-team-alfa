@@ -8,7 +8,7 @@ var apptime = 1;
 var nextUpdate = 1000;
 function heartbeat() {
 	apptime += 10;
-	var addr = $("#addr").val();
+	var addr = "static/appstate.json";
 	if (apptime > nextUpdate && nextUpdate > 0) {
 		nextUpdate = -1;
 		$.ajax({
@@ -27,21 +27,72 @@ function heartbeat() {
 	setTimeout(heartbeat, 10);
 }
 
-function updateApplicationState(data) {
-	var state = data.state;
-	var questions = state.questions;
-	questions.sort(function(q1,q2) { return q2.votescore - q1.votescore; });
-	
-}
-
 function addQuestion(text) {
+/*
+	$.ajax({
+		type: 'POST',
+		url: "studentq/addQuestion,
+		data: {
+			text : textcontent
+		},
+		success: function(data) {
+			alert("ok - question added");
+			updateNow();
+		},
+  		error: function(jqXHR, textStatus, errorThrown) {
+  			alert("Cannot save");
+  		}
+	});
+*/
 }
 
-function voteQuestion() {
+function voteQuestion(qid,qpoint) {
+	$.ajax({
+		type: 'POST',
+		url: "studentq/updatestate",
+		data: {
+			action : "vote",
+			id : qid,
+			points : qpoint
+		},
+		success: function(data) {
+			alert("ok - voted");
+			updateNow();
+		},
+  		error: function(jqXHR, textStatus, errorThrown) {
+  			alert("Cannot save");
+  		}
+	});
 }
 
 function updateNow() {
 	nextUpdate = apptime+1;
+}
+
+function updateApplicationState(data,error) {
+	var state = data.state;
+	var questions = state.questions;
+	
+	questions.sort(function(q1,q2) { return q2.votescore - q1.votescore; });
+	
+	$("#right_container").html("");
+	questions.forEach(function(question) {
+		var temp = $(".question-template");
+		var qdiv = temp.clone();
+		var id = question.id;
+		qdiv.find(".text").html(question.text);
+		qdiv.find(".votes").html(question.votescore);
+		qdiv.find("#upvote").click(function() {
+			voteQuestion(id,1);
+		});
+		qdiv.find("#downvote").click(function() {
+			voteQuestion(id,-1);
+		});
+		
+		qdiv.attr("class", "question");
+		$("#right_container").append(qdiv);
+		qdiv.show();
+	});
 }
 
 
@@ -56,15 +107,7 @@ function updateApplicationStateMock(data, error) {
 	}
 }
 
-function updateApplicationStateMock2(data, error) {
-	updateApplicationStateMock(data, error);
-	
-	if (data) {
-		updateApplicationStateMock(data);
-	}
-}
-
-function updateApplicationStateMock(data) {
+function updateApplicationStateMock2(data,error) {
 	var state = data.state;
 	var questions = state.questions;
 	
