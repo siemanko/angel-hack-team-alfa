@@ -36,8 +36,17 @@ def submitquestion(request):
 
 def viewquestion(request):
 	active_question = ActiveQuestion.objects.get()
-	return render(request, 'teacherq/viewactive.html', {'active_question': active_question})
+
+
+ 	answer_options = AnswerOption.objects.filter(question=active_question)
+	
+	return render(request, 'teacherq/viewactive.html',
+		{
+			'active_question': active_question,
+			'answer_options': answer_options
+		})
  
+
 def showanswers(request):
  	id = request.GET['id']
 

@@ -10,7 +10,7 @@
 
 
 	{% for ao in answer_options %}
-	<input type="radio" name="answer" value="{{ ao.answer }}" /><br>
+	<input type="radio" name="answer" value="{{ ao.answer }}" /> {{ ao.answer }} <br>
 	{% endfor %}
 
 	<input type="submit" value="Submit" />
