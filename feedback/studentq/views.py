@@ -4,6 +4,8 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import Context, loader, RequestContext
 
+from studentq.models import Question
+
 def index(request):
     return render_to_response('studentq/index.html', {})
 
@@ -11,6 +13,7 @@ def test(request):
     return render_to_response('studentq/test.html', {})
 
 def getstate(request):
+    """
     response = {}
     state = {}
     response['state'] = state
@@ -35,4 +38,16 @@ def getstate(request):
     questions.append(q1)
     questions.append(q2)
     questions.append(q3)
+    """
+    response = {}
+    state = {}
+    response['state'] = state
+    questions = []
+    state['questions'] = questions
+    for q in Question.objects.all():
+      questions.append({
+                         'id' : q.id,
+                         'text' : q.text,
+                         'votescore' : q.votescore,
+                        })
     return HttpResponse(json.dumps(response), mimetype="application/json")
