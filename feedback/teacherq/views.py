@@ -43,10 +43,10 @@ def showanswers(request):
 
  	question = Question.objects.get(id=id)
  
-	answers = []
+	answers = {}
 
  	for ans in AnswerOption.objects.filter(question__id=id):
- 	 	answers.append(ans.answer)
+ 	 	answers[ans.answer] = ans.count
 
  	return render(request, 'teacherq/show_answers.html', {
  		'question' : question.question,

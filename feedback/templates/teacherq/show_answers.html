@@ -1,9 +1,32 @@
 {% extends "teacherq/index.html" %}
 
-{% block content %}
-Answers to question <b>{{question}}</b><br><br>
+{% block head_scripts %}
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+  google.load("visualization", "1", {packages:["corechart"]});
+  google.setOnLoadCallback(drawChart);
+  function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+      ['Answer', 'Count of votes'],
+		{% for answer, count in answers.items %}
+			['{{answer}}', {{count}}],
+		{% endfor %}
+    ]);
 
-{% for answer in answers %}
-	{{answer}}<br>
-{% endfor %}
+    var options = {
+      title: '{{question}}'
+    };
+
+    var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+    chart.draw(data, options);
+  }
+</script>
+{% endblock %}
+
+{% block  teachers_content %}
+
+
+
+<div id="chart_div" style="width: 900px; height: 500px;"></div>
+
 {% endblock %}

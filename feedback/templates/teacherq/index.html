@@ -1,11 +1,18 @@
 {% extends "fbcore/index.html" %}
 
-This is teacher's panel.
 {% block content %}
+
+--------------------------<br>
+This is teacher's panel.<br>
+---------------------------<br>
+
+
+{% block teachers_content %}
 <a href='askquestion/'>Ask a new question</a>
 
 <br><br>
 
+<img src="//chart.googleapis.com/chart?chs=320x225&cht=p&chd=s:GECD&chdl=a|b|c|d&chp=0.3" width="320" height="225" alt="" />
 {% for id, question in questions.items %}
     <a href="showanswers/?id={{ id }}">
     	{{ question }}
@@ -13,5 +20,5 @@ This is teacher's panel.
 {% endfor %}
 
 {% endblock %}
-
+{% endblock %}
 
