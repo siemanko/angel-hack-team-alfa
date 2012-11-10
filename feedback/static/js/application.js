@@ -49,12 +49,12 @@ $.ajax({
 });
 }
 
-function addQuestion(text) {
+function addQuestion(textcontent) {
 	$.ajax({
 		type: 'POST',
 		url: "/studentq/updatestate",
 		data: {
-			action : "addquestion",
+			action : "add",
 			text : textcontent
 		},
 		success: function(data) {
@@ -115,11 +115,19 @@ console.log(questions.length);
 		qdiv.attr("class", "question");
 		qdiv.addClass("q-"+id);
 		
-		//var math = document.getElementById("MathExample");
 		if (qNode.size() > 0) {
 			qdiv.show();
+			if (question.votescore <= 0) {
+				qdiv.css({ opacity: 0.5 });
+				qdiv.find(".votes").css("color", "red");
+			} 
 		} else {
-			qdiv.fadeIn(1000);
+			if (question.votescore > 0) {
+				qdiv.fadeIn(1000);
+			} else {
+				qdiv.fadeTo(1000, 0.5);
+				qdiv.find(".votes").css("color", "red");
+			}
 		}
 		elements.push(qdiv);
 	});

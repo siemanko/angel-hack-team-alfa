@@ -7,6 +7,8 @@
     </script>
 {% endblock %}
 
+{% block chujoza %} {% endblock %}
+
 {% block menu %}
 <li class="active">
 	<a href="#">Clarrifications</a>
@@ -15,17 +17,19 @@
 	<a href="#about">Challenges</a>
 </li>  
 <li>
-  <a id="npa" onclick="attentionButton(true)" href="#">loool</a>
+  <a id="npa" onclick="attentionButton(true)" href="#">I DON'T GET THAT</a>
 </li>
 {% endblock %}
 
 {% block footer %}
-<div class="question-template" style="display: none;" width="720" height="300" id="q_main">
+<div class="question-template" style="display: none; background:white; margin-bottom:10px" width="720" height="300" id="q_main">
 	<div class="text">This a sample question that some stupid did..</div>
-	<div class="controls">
-		<div class="votes">45</div>
-		<button data-loading-text="+" class="btn btn-info upvote">+</button>
-		<button data-loading-text="-" class="btn btn-info downvote">-</button>
+		<div class="controls" >
+			<div class="votes" >45</div>
+    		<div class="btn-group btn-group-vertical">
+			  <button style="cursor:hand" data-loading-text="+" class="btn upvote">+1</button>
+			  <button style="cursor:hand" data-loading-text="-" class="btn downvote">&nbsp;-1</button>
+	    </div>
 	</div>
 </div>
 {% endblock %}

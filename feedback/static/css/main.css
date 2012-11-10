@@ -22,7 +22,7 @@ body {
 	border-width: 1px;
 	box-shadow: 2px 2px 2px #AAAABB;
 	width: 900px;
-	height: 140px;
+	height: 100px;
 	padding-right: 5px;
 }
 
@@ -30,27 +30,28 @@ body {
 	width:700px;
 	padding-left: 20px;
 	padding-top: 14px;
-
+	float: left;
 }
 
 .question .controls {
 	position: relative;
 	width: 40px;
 	top: 10px;
-	left: 847px;
-	font-size: 35px;
+	left: 127px;
+	font-size: 50px;
+	float: left;
 }
 
 .question .controls .votes {
 	position: relative;
-	left: -70px;
-	top: 36px;
+	left: -55px;
+	top: 15px;
 	font-family: "Fabada";
-	font-size: 50px;
+	font-size: 100px;
+	float: right;
 }
 .question .controls .downvote {
 	position:relative;
-	top: -7px;
 
 }
 
