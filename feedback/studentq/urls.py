@@ -7,5 +7,6 @@ urlpatterns = patterns('',
     url(r'^getstate$', 'studentq.views.getstate'),
     url(r'^updatestate$', 'studentq.views.updatestate'),
     url(r'^updateattention$', 'studentq.views.updateattention'),
+    url(r'^changeuser$', 'studentq.views.changeuser'),
 )
 

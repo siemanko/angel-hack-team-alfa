@@ -16,6 +16,17 @@ def index(request):
 def test(request):
     return render_to_response('studentq/test.html', {})
 
+def changeuser(request):
+    if len(User.objects.all()) == 0:  
+        user = User(name = 'angel', is_logged_in = True, is_teacher = False,
+is_confused = False)
+        user.save();
+    else:
+        user = User.objects.get()
+        user.is_teacher = not user.is_teacher
+        user.save()
+    return HttpResponse("OK");
+
 def getstate(request):
     response = {}
     state = {}
