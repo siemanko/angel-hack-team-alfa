@@ -14,5 +14,7 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^core/', include('fbcore.urls')),
+    url(r'^index', 'fbcore.views.index'),
+    url(r'^studentq/', include('studentq.urls')),
+    url(r'^teacherq/', include('teacherq.urls')),
 )
