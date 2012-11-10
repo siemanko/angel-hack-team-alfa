@@ -28,11 +28,11 @@ function heartbeat() {
 }
 
 function addQuestion(text) {
-/*
 	$.ajax({
 		type: 'POST',
-		url: "studentq/addQuestion,
+		url: "/studentq/updatestate",
 		data: {
+			action : "addquestion",
 			text : textcontent
 		},
 		success: function(data) {
@@ -43,7 +43,6 @@ function addQuestion(text) {
   			alert("Cannot save");
   		}
 	});
-*/
 }
 
 function voteQuestion(qid,qpoint) {
@@ -113,6 +112,8 @@ console.log(questions.length);
 		
 		qdiv.attr("class", "question");
 		qdiv.addClass("q-"+id);
+		
+		//var math = document.getElementById("MathExample");
 		if (qNode.size() > 0) {
 			qdiv.show();
 		} else {
@@ -124,6 +125,7 @@ console.log(questions.length);
 	$("#right_container").html("");
 	elements.forEach(function(el) {
 		$("#right_container").append(el);
+		MathJax.Hub.Queue(["Typeset",MathJax.Hub,el.get()]);
 	});
 }
 
