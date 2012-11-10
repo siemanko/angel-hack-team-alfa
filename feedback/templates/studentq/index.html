@@ -17,6 +17,7 @@
 {% endblock %}
 
 {% block footer %}
+<!--
   <div>
   	<div class="question-template" style="display: none;">
         <div class="text"></div>
@@ -25,9 +26,12 @@
         <button id="downvote" data-loading-text="-" class="btn btn-info">-</button></p>        
     </div>
   </div>
-  
-  <div>TEST:</div>
-  <div id="callNo"></div>
-  <div id="appstate"></div>
-  <div id="window"></div>
+  -->
+         <div class="question-template" style="display: none;" width="720" height="300" id="q_main">
+          <div class="text">This a sample question that some stupid did..</div>
+          <div class="controls">
+            <div class="votes">45</div>
+            <button data-loading-text="+" class="btn btn-info upvote">+</button></p>
+            <button data-loading-text="-" class="btn btn-info downvote">-</button></p>        
+          </div>
 {% endblock %}

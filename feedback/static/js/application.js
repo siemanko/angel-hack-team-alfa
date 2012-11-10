@@ -8,7 +8,7 @@ var apptime = 1;
 var nextUpdate = 1000;
 function heartbeat() {
 	apptime += 10;
-	var addr = "studentq/getstate";
+	var addr = "/studentq/getstate";
 	if (apptime > nextUpdate && nextUpdate > 0) {
 		nextUpdate = -1;
 		$.ajax({
@@ -16,11 +16,11 @@ function heartbeat() {
 			dataType : "json",
 			success: function(data) {
 				appUpdateProc(data);
-				nextUpdate = apptime + 5000;
+				nextUpdate = apptime + 20000;
 			},
 			error : function(jqXHR, textStatus, errorThrown) {
 				appUpdateProc(undefined, errorThrown);
-				nextUpdate = apptime + 10000;
+				nextUpdate = apptime + 30000;
 			}
 		});
 	}
@@ -49,14 +49,13 @@ function addQuestion(text) {
 function voteQuestion(qid,qpoint) {
 	$.ajax({
 		type: 'POST',
-		url: "studentq/updatestate",
+		url: "/studentq/updatestate",
 		data: {
 			action : "vote",
 			id : qid,
 			points : qpoint
 		},
 		success: function(data) {
-			alert("ok - voted");
 			updateNow();
 		},
   		error: function(jqXHR, textStatus, errorThrown) {
@@ -72,6 +71,7 @@ function updateNow() {
 function updateApplicationState(data,error) {
 	var state = data.state;
 	var questions = state.questions;
+console.log(questions.length);
 	
 	questions.sort(function(q1,q2) { return q2.votescore - q1.votescore; });
 	
@@ -84,10 +84,10 @@ function updateApplicationState(data,error) {
 		var qdiv = temp.clone();
 		qdiv.find(".text").html(question.text);
 		qdiv.find(".votes").html(question.votescore);
-		qdiv.find("#upvote").click(function() {
+		qdiv.find(".upvote").click(function() {
 			voteQuestion(id,1);
 		});
-		qdiv.find("#downvote").click(function() {
+		qdiv.find(".downvote").click(function() {
 			voteQuestion(id,-1);
 		});
 		
