@@ -28,11 +28,11 @@ function heartbeat() {
 }
 
 function addQuestion(text) {
-/*
 	$.ajax({
 		type: 'POST',
-		url: "studentq/addQuestion,
+		url: "/studentq/updatestate",
 		data: {
+			action : "addquestion",
 			text : textcontent
 		},
 		success: function(data) {
@@ -43,7 +43,6 @@ function addQuestion(text) {
   			alert("Cannot save");
   		}
 	});
-*/
 }
 
 function voteQuestion(qid,qpoint) {
