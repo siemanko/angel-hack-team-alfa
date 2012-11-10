@@ -5,7 +5,7 @@ urlpatterns = patterns('',
     url(r'^$', 'studentq.views.index'),
     url(r'^test$', 'studentq.views.test'),
     url(r'^getstate$', 'studentq.views.getstate'),
-    url(r'^updatestate', 'studentq.views.updatestate'),
-    url(r'^updateattention', 'studentq.views.updateattention'),
+    url(r'^updatestate$', 'studentq.views.updatestate'),
+    url(r'^updateattention$', 'studentq.views.updateattention'),
 )
 
