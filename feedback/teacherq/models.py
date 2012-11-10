@@ -12,6 +12,7 @@ class Question(models.Model):
 class AnswerOption(models.Model):
 		question = models.ForeignKey(Question)
 		answer = models.CharField(max_length=5000)
+		count = models.IntegerField()
 		def __unicode__(self):
 			return self.question.__unicode__() + self.answer
 
