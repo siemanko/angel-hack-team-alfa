@@ -1,0 +1,18 @@
+{% load url from future %}
+
+<h1> Ask question </h1>
+
+
+<form action="submitquestion" method="get">
+		Question:
+		<input type="text" name="question" id="question" value="" />
+
+		<br><br>
+
+		a) <input type="text" name="ans_a" id="ans_a" /><br>
+		b) <input type="text" name="ans_b" id="ans_b" /><br>
+		c) <input type="text" name="ans_c" id="ans_c" /><br>
+		d) <input type="text" name="ans_d" id="ans_d" /><br>
+
+<input type="submit" value="Ask" />
+</form>

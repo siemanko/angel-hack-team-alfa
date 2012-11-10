@@ -1,0 +1,22 @@
+{% if active_question %}
+
+<h1> Answer Question </h1>
+
+
+<form action="submitquestion" method="get">
+	Question:
+	<input type="text" name="question" id="question" value="" />
+	
+	<br><br>
+
+	{% for choice in active_question.answerOption_set.all %}
+	<input type="radio" name="answer" value="{{ choice.answer }}" /><br>
+	{% endfor %}
+
+<input type="submit" value="Ask" />
+
+</form>
+
+{% else %}
+	<p>There are no active questions</p>
+{% endif %}
