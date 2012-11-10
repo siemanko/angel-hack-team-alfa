@@ -1,18 +1,74 @@
+@font-face {
+	font-family: Fabada;
+	src: url(fonts/Fabada-regular.ttf);
+}
+
 body {  
-	padding-top: 35px;  
 	padding-bottom: 40px;  
+	background-image: url('img/backFinal2.png');
+	padding-left: 40px;
+	font-size: 20px;
+	font-family: "Fabada";
 }  
 
-.container-fluid .row #right_container {
+.container-fluid {
+	color: rgba(100, 100, 100,1);
+}
 
+.question {
 	border-radius: 8px;
 	border-style:solid;
 	border-color: #AAAABB;
 	border-width: 1px;
 	box-shadow: 2px 2px 2px #AAAABB;
+	width: 900px;
+	height: 140px;
+	padding-right: 5px;
+}
+
+.question .text {
+	width:700px;
+	padding-left: 20px;
+	padding-top: 14px;
+
+}
+
+.question .controls {
+	position: relative;
+	width: 40px;
+	top: 10px;
+	left: 847px;
+	font-size: 35px;
+}
+
+.question .controls .votes {
+	position: relative;
+	left: -70px;
+	top: 36px;
+	font-family: "Fabada";
+	font-size: 50px;
+}
+.question .controls .downvote {
+	position:relative;
+	top: -7px;
+
+}
+
+.question .controls .btn-info {
+	font-size: 25px;
+	text-align: center;
+	width:30px;
+	height:30px;
+}
+
+
+.al-element {
+	padding-top: 60px;
+	border-radius: 8px;
+	border-width: 1px;
 	height:800px;
 	padding-left: 20px;
-
+	background-color: rgba(240, 240, 240,.80);
 }
 
 
