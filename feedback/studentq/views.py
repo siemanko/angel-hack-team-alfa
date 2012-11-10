@@ -51,6 +51,9 @@ def updatestate(request):
         points = request.POST['points']
     elif action == 'add':
         qtext = request.POST['text']
+    elif action == 'mark':
+        qid = request.POST['id']
+        q = Question.objects.get(id = qid)        
     else:
       throw
   except:
@@ -61,6 +64,9 @@ def updatestate(request):
       q.save()
     elif action == 'add':
       q = Question(text=qtext, votescore=1)
+      q.save()
+    elif action == 'mark':
+      q.is_answered = True
       q.save()
     return HttpResponse('OK')
       

@@ -25,15 +25,22 @@ Loading questions...
 {% endblock %}
 
 {% block footer %}
-<div class="question-template" style="display: none; background:white; margin-bottom:10px" width="720" height="300" id="q_main">
+<div class="question-template" style="display: none; background:white; margin-bottom:10px; position:relative;" width="720" height="300" id="q_main">
 
+	{% if is_teacher %}
+	<div class="teacher_controls" style="position: absolute; top: 60px; left: 15px;">
+		<button class="btn markanswer" onclick="">Mark answered</button>
+	</div>
+	{% endif %}
+	
 	<div class="text">This a sample question that some stupid did..</div>
-		<div class="controls" >
-			<div class="votes" >45</div>
-    		<div class="btn-group btn-group-vertical">
-			  <button style="cursor:hand" data-loading-text="+" class="btn upvote">+1</button>
-			  <button style="cursor:hand" data-loading-text="-" class="btn downvote">&nbsp;-1</button>
-	    </div>
+	<div class="controls" >
+		<div class="votes" >45</div>
+    	<div class="btn-group btn-group-vertical">
+		  <button style="cursor:hand" data-loading-text="+" class="btn upvote">+1</button>
+		  <button style="cursor:hand" data-loading-text="-" class="btn downvote">&nbsp;-1</button>
+		</div>
+	</div>
 <!--
 	<div class="text">This a sample question that some stupid did.. {% if is_teacher %} (teacher) {% endif %}</div>
 	<div class="controls" >
@@ -43,6 +50,5 @@ Loading questions...
 		  <button style="cursor:hand" data-loading-text="-" class="btn downvote">&nbsp;-1</button>
     </div>
 -->
-	</div>
 </div>
 {% endblock %}

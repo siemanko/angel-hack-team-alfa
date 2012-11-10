@@ -1,18 +1,26 @@
-{% load url from future %}
-
-<h1> Ask question </h1>
-
-
+{% extends "teacherq/index.html" %}
+ 
+{% block content %}  
 <form action="submitquestion" method="get">
-		Question:
-		<input type="text" name="question" id="question" value="" />
-
-		<br><br>
-
-		a) <input type="text" name="ans_a" id="ans_a" /><br>
-		b) <input type="text" name="ans_b" id="ans_b" /><br>
-		c) <input type="text" name="ans_c" id="ans_c" /><br>
-		d) <input type="text" name="ans_d" id="ans_d" /><br>
-
-<input type="submit" value="Ask" />
+  <div class="ask_question">
+        <div class="header"></div>
+        <textarea name="question" id="question" value="Write your question here?"></textarea>
+        <div class="options">
+                <div id ="letters">    
+                        <div class="row1">a)</div>
+                        <div class="row2">b)</div>
+                        <div class="row3">c)</div>
+                        <div class="row4">d)</div>
+                </div>
+ 
+                <div id="inputs">
+                        <div class="row1"><input type="text" name="ans_a" id="ans_a" /></div>
+                        <div class="row2"><input type="text" name="ans_b" id="ans_b" /></div>
+                        <div class="row3"><input type="text" name="ans_c" id="ans_c" /></div>
+                        <div class="row4"><input type="text" name="ans_d" id="ans_d" /></div>
+                </div>
+        </div>
+        <button data-loading-text="Ask Question" class="btn btn-info">Ask Question</button>
+  </div>
 </form>
+{% endblock %}
