@@ -23,12 +23,12 @@ def submitquestion(request):
 	ans_b.save()
 	ans_c.save()
 	ans_d.save()
-
+	
 	
 	return HttpResponse(newquestion.__unicode__() + ' added to database')
 	#return render_to_response('teacherq/index.html', {})
 
 def viewquestion(request):
-	active_question = ActiveQuestion.objects.all()[0]
-	return render(request, 'teacherq/viewactive.html', {'active_questions': active_questions})
+	active_question = ActiveQuestion.objects.get()
+	return render(request, 'teacherq/viewactive.html', {'active_question': active_question})
  
