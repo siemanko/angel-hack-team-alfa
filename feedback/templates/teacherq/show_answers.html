@@ -1,0 +1,9 @@
+{% extends "teacherq/index.html" %}
+
+{% block content %}
+Answers to question <b>{{question}}</b><br><br>
+
+{% for answer in answers %}
+	{{answer}}<br>
+{% endfor %}
+{% endblock %}

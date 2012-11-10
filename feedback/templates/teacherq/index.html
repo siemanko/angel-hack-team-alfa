@@ -6,8 +6,8 @@ This is teacher's panel.
 
 <br><br>
 
-{% for id, question in existing_question %}
-    <a href="showanswers/{{ id }}">
+{% for id, question in questions.items %}
+    <a href="showanswers/?id={{ id }}">
     	{{ question }}
     </a><br>
 {% endfor %}
