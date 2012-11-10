@@ -7,17 +7,15 @@
 <script type='text/javascript'>
   google.load('visualization', '1', {packages:['gauge']});
   google.setOnLoadCallback(confusionHeartbeat);
-  
+
   function drawChart(level) {
     var data = google.visualization.arrayToDataTable([
       ['Label', 'Value'],
-      ['Confusion level', level],
+      ['Confusion', level],
     ]);
 
-    alert("asshole!");
-
     var options = {
-      width: 400, height: 120,
+      width: 300, height: 300,
       redFrom: 90, redTo: 100,
       yellowFrom:75, yellowTo: 90,
       minorTicks: 5
@@ -35,19 +33,19 @@ function confusionHeartbeat() {
   if (confusionApptime > confusionNextUpdate && confusionNextUpdate > 0) {
     confusionNextUpdate = -1;
     $.ajax({
-      url : /teacherq/confusedstudents,
+      url : "/teacherq/confusedstudents",
       dataType : "json",
       success: function(data) {
         drawChart(data.confusionLevel);
-        confusionNextUpdate = confusionApptime + 20000;
+        confusionNextUpdate = confusionApptime + 2000;
       },
       error : function(jqXHR, textStatus, errorThrown) {
         alert(errorThrown);
-        confusionNextUpdate = confusionApptime + 30000;
+        confusionNextUpdate = confusionApptime + 3000;
       }
     });
   }
-  setTimeout(heartbeat, 1);
+  setTimeout(confusionHeartbeat, 1);
 }
 
 </script>

@@ -10,7 +10,7 @@ from teacherq.models import User
 def index(request):
     return render_to_response('studentq/index.html', 
                               {
-                                'is_teacher' : User.objects.get().is_teacher
+                                'is_teacher' : User.objects.get(id=1).is_teacher
                               })
 
 def test(request):
@@ -22,7 +22,7 @@ def changeuser(request):
 is_confused = False)
         user.save();
     else:
-        user = User.objects.get()
+        user = User.objects.get(id=1)
         user.is_teacher = not user.is_teacher
         user.save()
     return HttpResponse("OK");
@@ -65,7 +65,7 @@ def updatestate(request):
     return HttpResponse('OK')
       
 def updateattention(req):
-  user = User.objects.get()
+  user = User.objects.get(id=1)
   if req.GET["change"] == "true":
     user.is_confused = not user.is_confused
     user.save()
