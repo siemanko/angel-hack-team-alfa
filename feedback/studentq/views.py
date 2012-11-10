@@ -5,6 +5,7 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.template import Context, loader, RequestContext
 
 from studentq.models import Question
+from teacherq.models import User
 
 def index(request):
     return render_to_response('studentq/index.html', {})
@@ -43,6 +44,11 @@ def updatestate(request):
       q.save()
       return HttpResponse('OK')
       
+def updateattention(req):
+  user = User.object.get()
+  user.is_confused = ~user.is_confused
+  user.save()
 
+  response = { "isConfused" : user.is_confused}
 
-
+  return HttpResponse(json.dumps(response), mimetype="application/json")

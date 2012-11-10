@@ -64,6 +64,26 @@ function voteQuestion(qid,qpoint) {
 	});
 }
 
+function attentionButtonClicked(ctx) {
+	$.ajax({
+		type: 'POST',
+		url: "/studentq/updateattention",
+		data: {
+		},
+		success: function(data) {
+			if (data.isConfused) {
+				$("#npa").css("color", "red");
+			} else {
+				$("#npa").css("color", "grey");
+			}
+			updateNow();
+		},
+  		error: function(jqXHR, textStatus, errorThrown) {
+  			alert(errorThrown);
+  		}
+	});
+}
+
 function updateNow() {
 	nextUpdate = apptime+1;
 }
