@@ -20,9 +20,13 @@
   <a id="npa" onclick="attentionButton(true)" href="#">I DON'T GET THAT</a>
 </li>
 {% endblock %}
+{% block specific_content %}
+Loading questions...
+{% endblock %}
 
 {% block footer %}
 <div class="question-template" style="display: none; background:white; margin-bottom:10px" width="720" height="300" id="q_main">
+
 	<div class="text">This a sample question that some stupid did..</div>
 		<div class="controls" >
 			<div class="votes" >45</div>
@@ -30,6 +34,15 @@
 			  <button style="cursor:hand" data-loading-text="+" class="btn upvote">+1</button>
 			  <button style="cursor:hand" data-loading-text="-" class="btn downvote">&nbsp;-1</button>
 	    </div>
+<!--
+	<div class="text">This a sample question that some stupid did.. {% if is_teacher %} (teacher) {% endif %}</div>
+	<div class="controls" >
+		<div class="votes" >45</div>
+    <div class=" btn-group btn-group-vertical">
+		  <button style="cursor:hand" style="margin-bottom:20px" data-loading-text="+" class="btn upvote">+1</button>
+		  <button style="cursor:hand" data-loading-text="-" class="btn downvote">&nbsp;-1</button>
+    </div>
+-->
 	</div>
 </div>
 {% endblock %}

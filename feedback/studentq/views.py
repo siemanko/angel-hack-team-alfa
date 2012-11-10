@@ -8,10 +8,24 @@ from studentq.models import Question
 from teacherq.models import User
 
 def index(request):
-    return render_to_response('studentq/index.html', {})
+    return render_to_response('studentq/index.html', 
+                              {
+                                'is_teacher' : User.objects.get().is_teacher
+                              })
 
 def test(request):
     return render_to_response('studentq/test.html', {})
+
+def changeuser(request):
+    if len(User.objects.all()) == 0:  
+        user = User(name = 'angel', is_logged_in = True, is_teacher = False,
+is_confused = False)
+        user.save();
+    else:
+        user = User.objects.get()
+        user.is_teacher = not user.is_teacher
+        user.save()
+    return HttpResponse("OK");
 
 def getstate(request):
     response = {}
@@ -24,6 +38,7 @@ def getstate(request):
                          'id' : q.id,
                          'text' : q.text,
                          'votescore' : q.votescore,
+                         'is_answered' : q.is_answered,
                         })
     return HttpResponse(json.dumps(response), mimetype="application/json")
 
