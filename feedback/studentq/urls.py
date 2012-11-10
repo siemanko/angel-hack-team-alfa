@@ -4,5 +4,6 @@ from django.views.generic import DetailView, ListView
 urlpatterns = patterns('',
     url(r'^$', 'studentq.views.index'),
     url(r'^test$', 'studentq.views.test'),
+    url(r'^getstate$', 'studentq.views.getstate'),
 )
 
