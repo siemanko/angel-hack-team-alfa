@@ -8,7 +8,7 @@ var apptime = 1;
 var nextUpdate = 1000;
 function heartbeat() {
 	apptime += 10;
-	var addr = "static/appstate.json";
+	var addr = "studentq/getstate";
 	if (apptime > nextUpdate && nextUpdate > 0) {
 		nextUpdate = -1;
 		$.ajax({
@@ -16,11 +16,11 @@ function heartbeat() {
 			dataType : "json",
 			success: function(data) {
 				appUpdateProc(data);
-				nextUpdate = apptime + 20000;
+				nextUpdate = apptime + 5000;
 			},
 			error : function(jqXHR, textStatus, errorThrown) {
 				appUpdateProc(undefined, errorThrown);
-				nextUpdate = apptime + 50000;
+				nextUpdate = apptime + 10000;
 			}
 		});
 	}
@@ -75,11 +75,13 @@ function updateApplicationState(data,error) {
 	
 	questions.sort(function(q1,q2) { return q2.votescore - q1.votescore; });
 	
-	$("#right_container").html("");
+	var elements = [];
 	questions.forEach(function(question) {
+		var id = question.id;
+		var qNode = $(".q-"+id);
+		
 		var temp = $(".question-template");
 		var qdiv = temp.clone();
-		var id = question.id;
 		qdiv.find(".text").html(question.text);
 		qdiv.find(".votes").html(question.votescore);
 		qdiv.find("#upvote").click(function() {
@@ -90,8 +92,18 @@ function updateApplicationState(data,error) {
 		});
 		
 		qdiv.attr("class", "question");
-		$("#right_container").append(qdiv);
-		qdiv.show();
+		qdiv.addClass("q-"+id);
+		if (qNode.size() > 0) {
+			qdiv.show();
+		} else {
+			qdiv.fadeIn(1000);
+		}
+		elements.push(qdiv);
+	});
+	
+	$("#right_container").html("");
+	elements.forEach(function(el) {
+		$("#right_container").append(el);
 	});
 }
 
