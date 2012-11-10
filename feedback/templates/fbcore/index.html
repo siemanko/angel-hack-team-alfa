@@ -1,13 +1,41 @@
-<html>
-<head>
-<title>
-{% block title %} Feedback! {% endblock %}
-</title>
-</head>
-<body>
-{% block content %}
-We are in index.
-<img src="static/test.png" alt="Hi!" />
-{% endblock %}
-</body>
+{% extends "fbcore/base.html" %}
 
+{% block content %}
+
+	<div class="navbar navbar-fixed-top">  
+		<div class="navbar-inner">  
+			<div class="container">  
+			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">  
+				<span class="icon-bar"></span>  
+				<span class="icon-bar"></span>  
+				<span class="icon-bar"></span>  
+			</a>  
+				<div class="nav-collapse">  
+					<ul class="nav">  
+					<li class="active"><a href="#">Clarrifications</a></li>  
+					<li><a href="#about">Challenges</a></li>  
+					</ul>  
+				</div><!--/.nav-collapse -->  
+			</div>  
+		</div>  
+	</div>  
+
+  <div class="container-fluid">
+		<div class="row"><br>  
+      <div class="span5" id ="left_container"><br>  
+        inline elements like span, block level elements like p, div.<br>  
+      </div><br>  
+      <div class="span12" id="right_container"><br>  
+        <div class "question">
+          <div class "text"></div>
+          <div class "votes"></div>
+          <button id="upvote" data-loading-text="+" class="btn btn-info">+</button></p>
+          <button id="downvote" data-loading-text="-" class="btn btn-info">-</button></p>        
+        </div>
+
+        inline elements like span, block level elements like p, div.aaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaa aaaaaaaa aaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaa aaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaa aaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa<br>  
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,18 @@
+body {  
+	padding-top: 35px;  
+	padding-bottom: 40px;  
+}  
+
+.container-fluid .row #right_container {
+
+	border-radius: 8px;
+	border-style:solid;
+	border-color: #AAAABB;
+	border-width: 1px;
+	box-shadow: 2px 2px 2px #AAAABB;
+	height:800px;
+	padding-left: 20px;
+
+}
+
+
