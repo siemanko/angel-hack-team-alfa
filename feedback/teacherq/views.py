@@ -4,14 +4,29 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response, get_object_or_404, render
 from django.template import Context, loader, RequestContext
 from teacherq.models import Question, AnswerOption, ActiveQuestion, UserProfile
+from django.core.urlresolvers import reverse
+
+def verify_logged_in(request):
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect(reverse('login'))
+    else:
+        return None
+"""
+    ver = verify_logged_in(request)
+    if ver:
+      return ver
+"""
 
 def index(request):
-	questions = {}
+  ver = verify_logged_in(request)
+  if ver:
+      return ver
+  questions = {}
 
-	for question in Question.objects.all():
-		questions[question.id] = question.question
+  for question in Question.objects.all():
+    questions[question.id] = question.question
 
-	return render_to_response('teacherq/index.html', 
+  return render_to_response('teacherq/index.html', 
 		{"questions" : questions})
 
 def askquestion(request):
