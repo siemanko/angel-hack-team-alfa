@@ -25,6 +25,9 @@ def index(request):
                                 'is_teacher' : request.user.get_profile().is_teacher
                               })
 
+def start(request):
+    return render_to_response('studentq/start.html', {})
+    
 def test(request):
     return render_to_response('studentq/test.html', {})
 
