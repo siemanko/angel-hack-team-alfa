@@ -1,6 +1,6 @@
 var appUpdateProc; //update function
 var heartbeatAddr;
-
+var paramdic = {};
 $(document).ready(function() {
 	heartbeat();
 	attentionButton(false);
@@ -13,8 +13,7 @@ $(document).ready(function() {
     $.ajax({
 	    type: 'POST',
 	    url: "/teacherq/getquestions",
-	    data: {
-	    },
+	    data: {},
 	    success: function(data) {
         $("#ask-dropdown-content").html("");
         data.forEach(function(q) {
@@ -45,6 +44,7 @@ function heartbeat() {
 		$.ajax({
 			url : addr,
 			dataType : "json",
+      data : paramdic,
 			success: function(data) {
 				appUpdateProc(data);
 				nextUpdate = apptime + 1000;

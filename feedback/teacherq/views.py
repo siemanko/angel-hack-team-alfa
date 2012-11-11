@@ -3,11 +3,10 @@ from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response, get_object_or_404, render
 from django.template import Context, loader, RequestContext
-from teacherq.models import Question, AnswerOption, UserProfile, create_user_profile
+from teacherq.models import Question, AnswerOption, UserProfile
 import studentq.models
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
-import teacherq.models
 
 def verify_logged_in(request):
     if not request.user.is_authenticated():
@@ -89,26 +88,39 @@ def submitanswer(request):
 	return HttpResponse('question answered')
 
 
-def showanswers(request):
- 	id = request.GET['id']
+def showanswers(request, pk):
 
- 	question = Question.objects.get(id=id)
- 
-	answers = {}
-
- 	for ans in AnswerOption.objects.filter(question__id=id):
- 	 	answers[ans.answer] = ans.count
+# 	for ans in AnswerOption.objects.filter(question__id=id):
+ #	 	answers[ans.answer] = ans.count
+        q = Question.objects.get(id=pk)
 
  	return render(request, 'teacherq/show_answers.html', {
- 		'question' : question.question,
- 		'answers': answers,
+ 		  'id' : pk,
+                  'question' : q.question,
  		})
+
+def getanswers(request):
+    id = request.GET['id']
+    answers = []
+    for ans in AnswerOption.objects.filter(question__id=id):
+      answers.append({
+                        'text' : ans.answer,
+                        'count' : ans.count,
+                     })
+    return HttpResponse(json.dumps(answers), mimetype='application/json')
+
+def deactivatequestion(request):
+    id = request.GET['id']
+    q = Question.objects.get(id=id) 
+    q.visible = False
+    q.save()
+    return HttpResponseRedirect(reverse('teacherq'))
 
 def activatequestion(request, pk):
   q = Question.objects.get(id=pk)
   q.visible = True
   q.save();
-  return HttpResponse("OK");
+  return HttpResponseRedirect(reverse('show_answer', args=(int(pk),)));
 
 
 def getquestions(request):
@@ -136,19 +148,13 @@ def showconfusion(request):
 def test(request):
 		
 	for n in range(0, 20):
-		un = "student"+str(n)
-		if (User.objects.filter(username=un).count() > 0):
-			continue
-		newuser = User(username=un,password="p"+str(n))
+		newuser = User(username=("student"+n),password="p"+n)
 	 	newuser.save()
 		create_user_profile(None, newuser, True)
 
 	for n in range(0, 5):
-		un = "teacher"+str(n)
-		if (User.objects.filter(username=un).count() > 0):
-			continue
-		newuser = User(username=un,password="p"+str(n), is_staff=True)
-		newuser.save()
+		newuser = User(username="teacher"+n,password="p"+n, is_staff=True)
+	 	newuser.save()
 		create_user_profile(None, newuser, True)
 	
 	

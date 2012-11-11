@@ -10,6 +10,9 @@
 <li>
   <a id="npa" onclick="attentionButton(true)" href="#">I DON'T GET THAT</a>
 </li>
+<li>
+<a href="#playPacman" role="button" data-toggle="modal" onclick="initPacman()">Bored?</a>
+</li>
 {% endblock %}
 
 {% block scripts %}
@@ -27,8 +30,6 @@ Loading questions...
 {% block main_view_footer %}
 <div class="question_controls" style="position: absolute; left: 40px; top: 80px;">
 	<a href="#addQuestionModal" role="button" class="btn" data-toggle="modal">+Add Question</a>
-	&nbsp;
-	<a href="#playPacman" role="button" class="btn" data-toggle="modal" onclick="initPacman()">Bored?</a>
 </div>
   
 {% endblock %}

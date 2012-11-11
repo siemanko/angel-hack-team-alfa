@@ -1,17 +1,29 @@
-{% extends "teacherq/index.html" %}
+{% extends "fbcore/base.html" %}
+{% block content %}
 
-{% block head_scripts %}
+<div id="chart_div" style="width: 1830px; height: 800px;"></div>
+<center>
+<a class="btn btn-primary" data-dismiss="modal" href="/teacherq/deactivatequestion?id={{ id }}">Finish the survey</a>
+</center>
+{% endblock %}
+
+
+{% block scripts %}
+
+<script src="/static/js/application.js"></script>
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script type="text/javascript">
+  document.body.style.background="white";
   google.load("visualization", "1", {packages:["corechart"]});
-  google.setOnLoadCallback(drawChart);
-  function drawChart() {
-    var data = google.visualization.arrayToDataTable([
-      ['Answer', 'Count of votes'],
-		{% for answer, count in answers.items %}
-			['{{answer}}', {{count}}],
-		{% endfor %}
-    ]);
+  //google.setOnLoadCallback(drawChart);
+  function drawChart(response, error) {
+    var myarr = [];
+    myarr.push(['Answer', 'Count of votes']);
+  
+		response.forEach(function(elem) {
+      myarr.push([elem.text, elem.count]);
+    });  
+    var data = google.visualization.arrayToDataTable(myarr);
 
     var options = {
       title: '{{question}}'
@@ -20,13 +32,12 @@
     var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
     chart.draw(data, options);
   }
+  appUpdateProc = drawChart;
+  paramdic = {
+    'id' : {{ id }}
+  };
+  heartbeatAddr = "/teacherq/getanswers";
 </script>
-{% endblock %}
 
-{% block  teachers_content %}
-
-
-
-<div id="chart_div" style="width: 900px; height: 500px;"></div>
 
 {% endblock %}
