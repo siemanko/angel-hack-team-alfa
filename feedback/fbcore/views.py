@@ -6,11 +6,12 @@ import django.contrib.auth
 
 def index(request):
     if not request.user.is_authenticated():
-      return HttpResponseRedirect('login')
+        return HttpResponseRedirect('login')
     else:
-      return render_to_response('fbcore/index.html', {
-                                                        'is_teacher' : request.user.get_profile().is_teacher,
-                                                     })
+        if request.user.get_profile().is_teacher:
+            return HttpResponseRedirect('teacherq')
+        else:
+            return HttpResponseRedirect('studentq')
 
 def login(request):
     if len(request.POST) == 0:

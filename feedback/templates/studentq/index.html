@@ -1,5 +1,14 @@
 {% extends "fbcore/index.html" %}
 
+{% block menu %}
+<li>
+<a href="/studentq/">Student Questions</a>
+</li>  
+<li>
+  <a id="npa" onclick="attentionButton(true)" href="#">I DON'T GET THAT</a>
+</li>
+{% endblock %}
+
 {% block scripts %}
 	<script src="../static/js/application.js"></script>
     <script type="text/javascript">
@@ -8,12 +17,6 @@
 {% endblock %}
 
 {% block chujoza %} {% endblock %}
-
-{% block more_menu %}
-<li>
-  <a id="npa" onclick="attentionButton(true)" href="#">I DON'T GET THAT</a>
-</li>
-{% endblock %}
 
 {% block specific_content %}
 Loading questions...
