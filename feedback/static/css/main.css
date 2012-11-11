@@ -196,3 +196,28 @@ body {
         top:0px;
         left:530px;
 }
+
+.carouselOverlay {
+	position:absolute;
+	top:400px;
+	left:0px;
+	width:800px;
+	height:100px;
+	background:black;
+	
+	filter: alpha(opacity=55); /* internet explorer */
+	-khtml-opacity: 0.55;      /* khtml, old safari */
+	-moz-opacity: 0.55;       /* mozilla, netscape */
+	opacity: 0.55;           /* fx, safari, opera */
+}
+
+.carouselOverlayText {
+	position:absolute;
+	top:400px;
+	left:0px;
+	width:800px;
+	height:100px;
+	
+	padding: 10px;
+	color: white;
+}

@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 # Create your models here.
 
-
 class Question(models.Model):
 		question = models.CharField(max_length=200)
 		visible = models.BooleanField()

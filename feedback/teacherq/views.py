@@ -4,6 +4,7 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response, get_object_or_404, render
 from django.template import Context, loader, RequestContext
 from teacherq.models import Question, AnswerOption, UserProfile
+import studentq.models
 from django.core.urlresolvers import reverse
 
 def verify_logged_in(request):
@@ -21,10 +22,12 @@ def index(request):
   ver = verify_logged_in(request)
   if ver:
       return ver
-  questions = {}
-
-  for question in Question.objects.all():
-    questions[question.id] = question.question
+  questions = []
+  for question in studentq.models.Question.objects.order_by('-votescore')[:2]:
+    questions.append({ 
+                        'text' : question.text,
+                        'score' : question.votescore,
+                     })
 
   return render_to_response('teacherq/index.html', 
 		{"questions" : questions})

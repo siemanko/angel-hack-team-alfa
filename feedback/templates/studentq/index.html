@@ -3,10 +3,7 @@
 {% block menu %}
 <li>
   <a href="/studentq/">Questions</a>
-</li>  
-<li>
-<a id = "notifications" href="#">No questions to answer</a>
-</li>  
+</li> 
 <li>
   <a id="npa" onclick="attentionButton(true)" href="#">I DON'T GET THAT</a>
 </li>
@@ -20,14 +17,12 @@
     </script>
 {% endblock %}
 
-{% block chujoza %} {% endblock %}
-
 {% block specific_content %}
 Loading questions...
 {% endblock %}
 
 {% block main_view_footer %}
-<div class="question_controls" style="position: relative; left: -170px; top: 80px;">
+<div class="question_controls" style="position: absolute; left: 40px; top: 80px;">
 	<a href="#addQuestionModal" role="button" class="btn" data-toggle="modal">+Add Question</a>
 </div>
 {% endblock %}
@@ -46,7 +41,7 @@ Loading questions...
 	<div class="text">This a sample question that some stupid did..</div>
 	<div class="controls" >
 		<div class="votes" >45</div>
-    	<div class="btn-group btn-group-vertical">
+    <div class="btn-group btn-group-vertical">
 		  <button style="cursor:hand" data-loading-text="+" class="btn upvote">+1</button>
 		  <button style="cursor:hand" data-loading-text="-" class="btn downvote">&nbsp;-1</button>
 		</div>

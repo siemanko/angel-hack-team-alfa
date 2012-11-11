@@ -2,15 +2,18 @@
 
 {% block menu %}
 <li> 
-  <a href="/teacherq/">Challenges</a>
+  <a href="#" role="button"  data-toggle="modal">Ask students</a>
+</li>
+<li> 
+  <a href="#askTeacherQuestion" role="button"  data-toggle="modal">Add question</a>
 </li>  
+
 {% endblock %}
 
 {% block head_scripts %}
 <script type='text/javascript' src='https://www.google.com/jsapi'></script>
 <script type='text/javascript'>
   google.load('visualization', '1', {packages:['gauge']});
-//  google.setOnLoadCallback(confusionHeartbeat);
 
   function drawChart(level) {
     var data = google.visualization.arrayToDataTable([
@@ -19,7 +22,7 @@
     ]);
 
     var options = {
-      width: 300, height: 300,
+      width: 250, height: 250,
       redFrom: 90, redTo: 100,
       yellowFrom:75, yellowTo: 90,
       minorTicks: 5, animation : { duration: 1000 }
@@ -32,8 +35,18 @@
 
 {% block specific_content %}
 
-<a href="#askTeacherQuestion" role="button" class="btn" data-toggle="modal">Ask a new question</a>
-<br><br>
+<div class="row">
+      <div class="span5"><div id="chart_div"></div></div>
+      <div class="span6" style="line-height:150%">
+        <b>Top questions asked by users:</b><br>
+        {% for question in questions %}
+        <div class="well well-small">
+    	    {{ question.text }} <br>
+          <div align="right"><b>votes: {{ question.score }}</b></div> 
+        </div>
+        {% endfor %}
+      </div>
+</div>
 
   <style type="text/css">
     .qq {float:left;}
@@ -45,11 +58,12 @@
     <input type="checkbox" id="activate_{{id}}" class="qq qbox" onclick="alert('lolrous!')">Active</input>
 {% endfor %}
 
-<div id="chart_div"></div>
 
 <script type="text/javascript">
   var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
 </script>
+
+
 
 <!-- Modal -->
 <div id="askTeacherQuestion" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -79,6 +93,7 @@
     <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
     <button class="btn btn-primary" data-dismiss="modal" onclick="finalizeAskTeacherQuestion()">Ask</button>
   </div>
+<!-- Modal ends -->
 </div>
 {% endblock %}
 
