@@ -11,6 +11,8 @@
 {% endblock %}
 
 {% block head_scripts %}
+
+
 <script type='text/javascript' src='https://www.google.com/jsapi'></script>
 <script type='text/javascript'>
   google.load('visualization', '1', {packages:['gauge']});
@@ -22,7 +24,7 @@
     ]);
 
     var options = {
-      width: 250, height: 250,
+      width: 350, height: 350,
       redFrom: 90, redTo: 100,
       yellowFrom:75, yellowTo: 90,
       minorTicks: 5, animation : { duration: 1000 }
@@ -36,15 +38,11 @@
 {% block specific_content %}
 
 <div class="row">
-      <div class="span5"><div id="chart_div"></div></div>
+      <div class="span5"><h3>Confusion meter</h3><div id="chart_div"></div></div>
       <div class="span6" style="line-height:150%">
-        <b>Top questions asked by users:</b><br>
-        {% for question in questions %}
-        <div class="well well-small">
-    	    {{ question.text }} <br>
-          <div align="right"><b>votes: {{ question.score }}</b></div> 
-        </div>
-        {% endfor %}
+          <h3>Students ask questions</h3>
+          <div id="student-questions"> Loading data...</div>
+
       </div>
 </div>
 
@@ -53,16 +51,35 @@
     .qbox{position:relative;top:-25px;}
   </style>
 
-{% for id, question in questions.items %}
-    <a href="showanswers/?id={{ id }}" class="qq">{{ question }}</a>
-    <input type="checkbox" id="activate_{{id}}" class="qq qbox" onclick="alert('lolrous!')">Active</input>
-{% endfor %}
-
 
 <script type="text/javascript">
   var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
 </script>
 
+
+
+
+{% endblock %}
+
+{% block scripts %}
+	<script src="../static/js/application.js"></script>
+    <script type="text/javascript">
+    	appUpdateProc = teacherAppUpdate;
+    	heartbeatAddr = "/studentq/getstate";
+    </script>
+{% endblock %}
+
+
+{% block footer %}
+<div class="question-template" style="display: none; background:white; margin-bottom:10px; position:relative; width:500px;height:150px"  id="q_main">
+	<div class="text" style="width:400px;height:auto">This a sample question that some stupid did..</div>
+	<div class="controls" >
+		<div class="votes" style="left:-100px">45</div>
+      <div class="teacher_controls" style="position: absolute; top: 90px; left: -180px;">
+	      <button class="btn markanswer" onclick="">Mark answered</button>
+      </div>
+	</div>
+</div>
 
 
 <!-- Modal -->
@@ -93,14 +110,7 @@
     <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
     <button class="btn btn-primary" data-dismiss="modal" onclick="finalizeAskTeacherQuestion()">Ask</button>
   </div>
-<!-- Modal ends -->
 </div>
-{% endblock %}
+<!-- Modal ends -->
 
-{% block scripts %}
-	<script src="../static/js/application.js"></script>
-    <script type="text/javascript">
-    	appUpdateProc = teacherAppUpdate;
-    	heartbeatAddr = "/teacherq/confusedstudents";
-    </script>
 {% endblock %}

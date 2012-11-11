@@ -3,6 +3,7 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseBadRequest, Http404, HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import Context, loader, RequestContext
+from teacherq.models import UserProfile
 from studentq.models import Question
 from teacherq.models import UserQuestionAnswer, AnswerOption
 
@@ -46,12 +47,20 @@ is_confused = False)
         user.save()
     return HttpResponse("OK");
 
+def confusion_level(request):
+	confused_users = UserProfile.objects.filter(is_confused=True).count()
+	total_users = UserProfile.objects.all().count()
+	confusion_level = confused_users * 100 / total_users
+	return confusion_level 
+
+
 def getstate(request):
     response = {}
     state = {}
     response['state'] = state
     questions = []
     state['questions'] = questions
+    state['confusion'] = confusion_level(request)
     for q in Question.objects.all():
       questions.append({
                          'id' : q.id,
