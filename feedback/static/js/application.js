@@ -68,6 +68,28 @@ function addQuestion(textcontent, callback) {
 	});
 }
 
+function addTeacherQuestion(textcontent,opt_a,opt_b,opt_c,opt_d,callback) {
+	$.ajax({
+		type: 'GET',
+		url: "/teacherq/askquestion/submitquestion",
+		data: {
+			question : textcontent,
+			ans_a : opt_a,
+			ans_b : opt_b,
+			ans_c : opt_c,
+			ans_d : opt_d
+		},
+		success: function(data) {
+			updateNow();
+			callback();
+		},
+  		error: function(jqXHR, textStatus, errorThrown) {
+  			alert("Cannot save");
+  			callback();
+  		}
+	});
+}
+
 function voteQuestion(qid,qpoint) {
 	$.ajax({
 		type: 'POST',
@@ -105,6 +127,9 @@ function markAnswered(qid) {
 
 function updateNow() {
 	nextUpdate = apptime+1;
+}
+
+function ignoreUpdate(data,error) {
 }
 
 function updateApplicationState(data,error) {
@@ -182,6 +207,23 @@ function finalizeAskQuestion() {
 	var text = $("#student_question").val();
 	$("#student_question").val("");
 	addQuestion(text, function() {
+		updateNow();
+	});
+}
+
+function finalizeAskTeacherQuestion() {
+	var text = $("#ask_question").val();
+	var ansA = $("#ans_a").val();
+	var ansB = $("#ans_b").val();
+	var ansC = $("#ans_c").val();
+	var ansD = $("#ans_d").val();
+	
+	$("#ans_a").val("");
+	$("#ans_b").val("");
+	$("#ans_c").val("");
+	$("#ans_d").val("");
+	$("#ask_question").val();
+	addTeacherQuestion(text,ansA,ansB,ansC,ansD,function() {
 		updateNow();
 	});
 }
