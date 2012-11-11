@@ -26,7 +26,7 @@ class ActiveQuestion(models.Model):
 class QuestionAnswer(models.Model):
 		user = models.ForeignKey(User)
 		question = models.ForeignKey(Question)
-		answer = models.ForeignKey(AnswerOption)
+		answer = models.ManyToManyField(AnswerOption)
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
