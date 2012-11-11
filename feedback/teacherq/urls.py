@@ -12,5 +12,6 @@ urlpatterns = patterns('',
 	url(r'^showanswers/$', views.showanswers, name='showanswers'),
 	url(r'^showconfusion/$', views.showconfusion, name='showconfusion'),
 	url(r'^confusedstudents/$', views.confusedstudents, name='confusedstudents'),
+	url(r'^test/$', views.test, name='test'),
 )
 

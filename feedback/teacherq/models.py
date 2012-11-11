@@ -17,6 +17,11 @@ class AnswerOption(models.Model):
 		def __unicode__(self):
 			return self.question.__unicode__() + self.answer
 
+class QuestionAnswer(models.Model):
+		user = models.ForeignKey(User)
+		question = models.ForeignKey(Question)
+		answer = models.ManyToManyField(AnswerOption)
+
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
     # Other fields here
@@ -32,5 +37,6 @@ class UserQuestionAnswer(models.Model):
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
         UserProfile.objects.create(user=instance)
+
 
 post_save.connect(create_user_profile, sender=User)

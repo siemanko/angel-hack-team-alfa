@@ -71,8 +71,19 @@ def viewquestion(request):
 def submitanswer(request):
 	id = request.GET['answer']
 	answer = AnswerOption.objects.get(id=id)
+	
+	existing_answers = QuestionAnswer.objects.filter(user=request.user, question=answer.question)
+	
+	if (existing_answers.count() != 0):
+		return HttpResponse('question already answered')
+	
+	
 	answer.count = answer.count + 1
 	answer.save()
+	
+	useranswer = QuestionAnswer(user=request.user, question=answer.question, answer=answer)
+	useranswer.save()
+	
 	return HttpResponse('question answered')
 
 
@@ -103,3 +114,7 @@ def confusedstudents(request):
 def showconfusion(request):
 	return render(request, 'teacherq/showconfusion.html', {} )
 
+
+def test(request):
+	
+	return HttpResponse('test succesfull')
