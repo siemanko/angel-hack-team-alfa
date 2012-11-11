@@ -208,6 +208,15 @@ console.log(questions.length);
 	});
 }
 
+//Easter egg
+function initPacman() {
+	$("#pacframe").attr("src", "/studentq/pacman");
+}
+
+function finalizePacman() {
+	$("#pacframe").attr("src", "");
+}
+
 // Dialogs
 
 function finalizeAskQuestion() {
