@@ -1,5 +1,7 @@
 from django.db import models
+from django.contrib.auth.models import User
 
+from django.db.models.signals import post_save
 # Create your models here.
 
 
@@ -21,10 +23,14 @@ class ActiveQuestion(models.Model):
 		def __unicode__(self):
 			return self.question.__unicode__()
 
+class UserProfile(models.Model):
+    user = models.OneToOneField(User)
+    # Other fields here
+    is_teacher = models.BooleanField()
+    is_confused = models.BooleanField()
 
-class User(models.Model):
-		name = models.CharField(max_length=200)
-		is_logged_in = models.BooleanField()
-                is_teacher = models.BooleanField()
-		is_confused = models.BooleanField()
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        UserProfile.objects.create(user=instance)
 
+post_save.connect(create_user_profile, sender=User)
