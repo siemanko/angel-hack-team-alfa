@@ -1,8 +1,13 @@
 {% extends "fbcore/index.html" %}
 
 {% block menu %}
-<li> 
-  <a href="#" role="button"  data-toggle="modal">Ask students</a>
+<li class="dropdown">
+  <a class="dropdown-toggle" id="ask-dropdown" role="button" data-toggle="dropdown" href="#">Ask Students</a>
+  <ul class="dropdown-menu" id="ask-dropdown-content" role="menu" aria-labelledby="dLabel">
+    <li> option 1 </li>
+    <li> option 2 </li>
+    <li> option 3 </li>
+  </ul>
 </li>
 <li> 
   <a href="#askTeacherQuestion" role="button"  data-toggle="modal">Add question</a>

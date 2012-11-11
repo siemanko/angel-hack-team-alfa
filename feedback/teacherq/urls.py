@@ -13,5 +13,7 @@ urlpatterns = patterns('',
 	url(r'^showconfusion/$', views.showconfusion, name='showconfusion'),
 	url(r'^confusedstudents/$', views.confusedstudents, name='confusedstudents'),
 	url(r'^test/$', views.test, name='test'),
+        url(r'^getquestions$', views.getquestions),
+        url(r'^activatequestion/(?P<pk>\d+)$', views.activatequestion),
 )
 

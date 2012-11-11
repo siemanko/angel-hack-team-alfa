@@ -104,6 +104,22 @@ def showanswers(request):
  		'answers': answers,
  		})
 
+def activatequestion(request, pk):
+  q = Question.objects.get(id=pk)
+  q.visible = True
+  q.save();
+  return HttpResponse("OK");
+
+
+def getquestions(request):
+    response = []
+    for q in Question.objects.all():
+        response.append({
+                          'id' : q.id,
+                          'text' : q.question
+                       })
+    return HttpResponse(json.dumps(response), mimetype='application/json') 
+
 def confusedstudents(request):
 	confused_users = UserProfile.objects.filter(is_confused=True).count()
 	total_users = UserProfile.objects.all().count()

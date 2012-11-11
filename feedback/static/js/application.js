@@ -4,7 +4,36 @@ var heartbeatAddr;
 $(document).ready(function() {
 	heartbeat();
 	attentionButton(false);
+  $("#ask-dropdown").click(function() {
+    console.log("here");
+    $("#ask-dropdown-content").html("");
+    var loadingli = document.createElement('li');
+    loadingli.appendChild(document.createTextNode("Loading..."));
+    $("#ask-dropdown-content").append(loadingli);
+    $.ajax({
+	    type: 'POST',
+	    url: "/teacherq/getquestions",
+	    data: {
+	    },
+	    success: function(data) {
+        $("#ask-dropdown-content").html("");
+        data.forEach(function(q) {
+          var loadingli = $('<li />');
+          var alink = $("<a />");
+          alink.attr("href", '/teacherq/activatequestion/'+q.id);
+          alink.html(q.text);
+          loadingli.append(alink);
+          $("#ask-dropdown-content").append(loadingli);
+        }); 
+	    },
+		    error: function(jqXHR, textStatus, errorThrown) {
+
+			    alert(errorThrown);
+		    }
+    });
+  });
 });
+
 
 var apptime = 1;
 var nextUpdate = 1000;
