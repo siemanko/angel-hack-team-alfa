@@ -8,7 +8,7 @@ This is teacher's panel.<br>
 
 
 {% block teachers_content %}
-<a href='askquestion/'>Ask a new question</a>
+<a href="#askTeacherQuestion" role="button" class="btn" data-toggle="modal">Ask a new question</a>
 
 <br><br>
 
@@ -23,5 +23,41 @@ This is teacher's panel.<br>
 {% endfor %}
 
 {% endblock %}
+
+<!-- Modal -->
+<div id="askTeacherQuestion" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Ask new question</h3>
+  </div>
+  <div class="modal-body ask_question" style="height: 350px;">
+	<textarea name="question" id="ask_question" value="Write your question here?"></textarea>
+	<div class="options">
+                <div id ="letters">    
+                        <div class="row1">a)</div>
+                        <div class="row2">b)</div>
+                        <div class="row3">c)</div>
+                        <div class="row4">d)</div>
+                </div>
+ 
+                <div id="inputs">
+                        <div class="row1"><input type="text" name="ans_a" id="ans_a" /></div>
+                        <div class="row2"><input type="text" name="ans_b" id="ans_b" /></div>
+                        <div class="row3"><input type="text" name="ans_c" id="ans_c" /></div>
+                        <div class="row4"><input type="text" name="ans_d" id="ans_d" /></div>
+                </div>
+        </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+    <button class="btn btn-primary" data-dismiss="modal" onclick="finalizeAskTeacherQuestion()">Ask</button>
+  </div>
+</div>
 {% endblock %}
 
+{% block scripts %}
+	<script src="../static/js/application.js"></script>
+    <script type="text/javascript">
+    	appUpdateProc = ignoreUpdate;
+    </script>
+{% endblock %}

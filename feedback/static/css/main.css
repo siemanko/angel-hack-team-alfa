@@ -73,7 +73,7 @@ body {
 	background-color: rgba(240, 240, 240,.80);
 }
 
-
+/*
 .ask_question {
         border-radius: 8px;
         border: solid;
@@ -89,6 +89,7 @@ body {
         padding-left: 35px;
         padding-top: 30px;
 }
+*/
  
 .ask_question textarea, input {
         font-size: 20px;
@@ -97,8 +98,8 @@ body {
         display:block;
 }
  
-.ask_question #question {
-        width: 800px;
+.ask_question #ask_question {
+        width: 500px;
         height: 120px;
         padding-top: -20px;
 }
@@ -129,7 +130,7 @@ body {
 .ask_question #inputs input {
         height: 25px;
         font-size: 20px;
-        width: 650px;
+        width: 400px;
 }
  
 .ask_question button {
