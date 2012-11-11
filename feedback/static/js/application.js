@@ -18,15 +18,15 @@ function heartbeat() {
 			dataType : "json",
 			success: function(data) {
 				appUpdateProc(data);
-				nextUpdate = apptime + 20000;
+				nextUpdate = apptime + 1000;
 			},
 			error : function(jqXHR, textStatus, errorThrown) {
 				appUpdateProc(undefined, errorThrown);
-				nextUpdate = apptime + 30000;
+				nextUpdate = apptime + 5000;
 			}
 		});
 	}
-	setTimeout(heartbeat, 10);
+	setTimeout(heartbeat, 1);
 }
 
 function attentionButton(change) {

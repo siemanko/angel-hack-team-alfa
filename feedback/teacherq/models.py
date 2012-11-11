@@ -7,9 +7,9 @@ from django.db.models.signals import post_save
 
 class Question(models.Model):
 		question = models.CharField(max_length=200)
+		visible = models.BooleanField()
 		def __unicode__(self):
 				return self.question
-
 
 class AnswerOption(models.Model):
 		question = models.ForeignKey(Question)
@@ -18,11 +18,6 @@ class AnswerOption(models.Model):
 		def __unicode__(self):
 			return self.question.__unicode__() + self.answer
 
-class ActiveQuestion(models.Model):
-		question = models.ForeignKey(Question)
-		def __unicode__(self):
-			return self.question.__unicode__()
-
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
     # Other fields here
@@ -30,6 +25,10 @@ class UserProfile(models.Model):
     is_confused = models.BooleanField()
     def __unicode__(self):
       return self.user.__unicode__()
+
+class UserQuestionAnswer(models.Model):
+	user = models.ForeignKey(User)
+	answer = models.ForeignKey(AnswerOption)
 
 def create_user_profile(sender, instance, created, **kwargs):
     if created:

@@ -3,7 +3,7 @@ from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response, get_object_or_404, render
 from django.template import Context, loader, RequestContext
-from teacherq.models import Question, AnswerOption, ActiveQuestion, UserProfile
+from teacherq.models import Question, AnswerOption, UserProfile
 from django.core.urlresolvers import reverse
 
 def verify_logged_in(request):

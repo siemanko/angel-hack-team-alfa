@@ -1,5 +1,5 @@
 from django.contrib import admin
-from teacherq.models import Question, AnswerOption, ActiveQuestion, UserProfile
+from teacherq.models import Question, AnswerOption, UserProfile
 
 
 
@@ -14,6 +14,5 @@ class QuestionAdmin(admin.ModelAdmin):
 	inlines = [AnswerOptionInline]
 
 
-admin.site.register(ActiveQuestion)
 admin.site.register(Question, QuestionAdmin)
 admin.site.register(UserProfile)

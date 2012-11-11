@@ -2,7 +2,10 @@
 
 {% block menu %}
 <li>
-<a href="/studentq/">Questions</a>
+  <a href="/studentq/">Questions</a>
+</li>  
+<li>
+<a id = "notifications" href="#">No questions to answer</a>
 </li>  
 <li>
   <a id="npa" onclick="attentionButton(true)" href="#">I DON'T GET THAT</a>
@@ -31,6 +34,8 @@ Loading questions...
 
 {% block footer %}
 <div class="question-template" style="display: none; background:white; margin-bottom:10px; position:relative;" width="720" height="300" id="q_main">
+
+
 
 	{% if is_teacher %}
 	<div class="teacher_controls" style="position: absolute; top: 60px; left: 15px;">

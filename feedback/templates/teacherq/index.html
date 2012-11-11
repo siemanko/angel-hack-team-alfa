@@ -35,12 +35,15 @@
 <a href="#askTeacherQuestion" role="button" class="btn" data-toggle="modal">Ask a new question</a>
 <br><br>
 
-{% for id, question in questions.items %}
-    <a href="showanswers/?id={{ id }}">
-    	{{ question }}
-    </a><br>
-{% endfor %}
+  <style type="text/css">
+    .qq {float:left;}
+    .qbox{position:relative;top:-25px;}
+  </style>
 
+{% for id, question in questions.items %}
+    <a href="showanswers/?id={{ id }}" class="qq">{{ question }}</a>
+    <input type="checkbox" id="activate_{{id}}" class="qq qbox" onclick="alert('lolrous!')">Active</input>
+{% endfor %}
 
 <div id="chart_div"></div>
 
