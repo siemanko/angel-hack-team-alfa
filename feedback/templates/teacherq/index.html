@@ -6,7 +6,36 @@
 </li>  
 {% endblock %}
 
-{% block specific_content %}
+{% block head_scripts %}
+<script type='text/javascript' src='https://www.google.com/jsapi'></script>
+<script type='text/javascript'>
+  google.load('visualization', '1', {packages:['gauge']});
+//  google.setOnLoadCallback(confusionHeartbeat);
+
+  function drawChart(level) {
+    var data = google.visualization.arrayToDataTable([
+      ['Label', 'Value'],
+      ['Confusion', level],
+    ]);
+
+    var options = {
+      width: 300, height: 300,
+      redFrom: 90, redTo: 100,
+      yellowFrom:75, yellowTo: 90,
+      minorTicks: 5, animation : { duration: 1000 }
+    };
+
+    chart.draw(data, options);
+  }
+</script>
+{% endblock %}
+
+
+{% block content %}
+
+--------------------------<br>
+This is teacher's panel.<br>
+---------------------------<br>
 
 {% block teachers_content %}
 <a href="#askTeacherQuestion" role="button" class="btn" data-toggle="modal">Ask a new question</a>
@@ -24,6 +53,12 @@
 {% endfor %}
 
 {% endblock %}
+
+<div id="chart_div"></div>
+
+<script type="text/javascript">
+  var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
+</script>
 
 <!-- Modal -->
 <div id="askTeacherQuestion" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -59,6 +94,7 @@
 {% block scripts %}
 	<script src="../static/js/application.js"></script>
     <script type="text/javascript">
-    	appUpdateProc = ignoreUpdate;
+    	appUpdateProc = teacherAppUpdate;
+    	heartbeatAddr = "/teacherq/confusedstudents";
     </script>
 {% endblock %}
