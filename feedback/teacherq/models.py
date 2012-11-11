@@ -10,13 +10,6 @@ class Question(models.Model):
 		def __unicode__(self):
 				return self.question
 
-class AnswerOption(models.Model):
-		question = models.ForeignKey(Question)
-		answer = models.CharField(max_length=5000)
-		count = models.IntegerField()
-		def __unicode__(self):
-			return self.question.__unicode__() + self.answer
-
 class QuestionAnswer(models.Model):
 		user = models.ForeignKey(User)
 		question = models.ForeignKey(Question)
