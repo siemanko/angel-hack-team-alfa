@@ -23,7 +23,7 @@ class ActiveQuestion(models.Model):
 		def __unicode__(self):
 			return self.question.__unicode__()
 
-class QuestionAnswer(models.Model)
+class QuestionAnswer(models.Model):
 		user = models.ForeignKey(User)
 		question = models.ForeignKey(Question)
 		answer = models.ForeignKey(AnswerOption)
