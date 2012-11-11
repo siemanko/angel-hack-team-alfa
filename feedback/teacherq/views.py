@@ -119,12 +119,12 @@ def showconfusion(request):
 def test(request):
 		
 	for n in range(0, 20):
-		newuser = User(username="student"+n,"p"+n)
+		newuser = User(username=("student"+n),password="p"+n)
 	 	newuser.save()
 		create_user_profile(None, newuser, True)
 
 	for n in range(0, 5):
-		newuser = User(username="teacher"+n,"p"+n, is_staff=True)
+		newuser = User(username="teacher"+n,password="p"+n, is_staff=True)
 	 	newuser.save()
 		create_user_profile(None, newuser, True)
 	
