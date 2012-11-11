@@ -9,5 +9,6 @@ urlpatterns = patterns('',
     url(r'^updatestate$', 'studentq.views.updatestate'),
     url(r'^updateattention$', 'studentq.views.updateattention'),
     url(r'^changeuser$', 'studentq.views.changeuser'),
+    url(r'^answerquestion$', 'studentq.views.answerquestion'),
 )
 

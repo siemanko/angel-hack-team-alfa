@@ -5,6 +5,9 @@
   <a href="/studentq/">Questions</a>
 </li> 
 <li>
+  <a href="#answerQuestionModal" data-toggle="modal">Answer</a>
+</li> 
+<li>
   <a id="npa" onclick="attentionButton(true)" href="#">I DON'T GET THAT</a>
 </li>
 {% endblock %}
@@ -62,5 +65,24 @@ Loading questions...
   </div>
 </div>
 
+<div id="answerQuestionModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Answer Question</h3>
+  </div>
+  <div class="modal-body">
+    <form action="/studentsq/answerquestion" method="GET">
+      <span id="question_text">qweasdzxc</span>
+      <input type="radio" id="ans_a" class="row1"><span id="text_a" class="row1">a</span><br>
+      <input type="radio" id="ans_b"><span id="text_b">b</span><br>
+      <input type="radio" id="ans_c"><span id="text_c">c</span><br>
+      <input type="radio" id="ans_d"><span id="text_d">d</span><br>
+  </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <button class="btn btn-primary" data-dismiss="modal" onclick="finalizeAnswerQuestion()">Submit</button>
+  </div>
+</div>
 
 {% endblock %}

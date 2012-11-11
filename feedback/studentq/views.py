@@ -4,6 +4,7 @@ from django.http import HttpResponse, HttpResponseBadRequest, Http404, HttpRespo
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import Context, loader, RequestContext
 from studentq.models import Question
+from teacherq.models import UserQuestionAnswer, AnswerOption
 
 def verify_logged_in(request):
     if not request.user.is_authenticated():
@@ -93,3 +94,10 @@ def updateattention(request):
     user_profile.save()
   response = { "isConfused" : user_profile.is_confused}
   return HttpResponse(json.dumps(response), mimetype="application/json")
+
+def answerquestion(request):
+  id = request.GET["id"]
+  answer = QuestionAnswer.objects.get(id = id)
+  uqanswer = UserQuestionAnswer(user = request.user, answer = answer);
+  uqanswer.save();
+  return HttpResponse("OK")  
