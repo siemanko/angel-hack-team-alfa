@@ -10,10 +10,12 @@ class Question(models.Model):
 		def __unicode__(self):
 				return self.question
 
-class QuestionAnswer(models.Model):
-		user = models.ForeignKey(User)
+class AnswerOption(models.Model):
 		question = models.ForeignKey(Question)
-		answer = models.ManyToManyField(AnswerOption)
+		answer = models.CharField(max_length=5000)
+		count = models.IntegerField()
+		def __unicode__(self):
+			return self.question.__unicode__() + self.answer
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
