@@ -131,12 +131,77 @@ function updateNow() {
 }
 
 function ignoreUpdate(data,error) {
-}
+} 
 
 function teacherAppUpdate(data,error) {
-	if (data) {
-		drawChart(data.confusionLevel);
-	}
+
+
+  drawChart(data.state.confusion);
+
+
+	var state = data.state;
+	var questions = state.questions;
+	
+	questions.sort(function(q1,q2) { 
+		var q1s = q1.is_answered ? -1000 : q1.votescore; 
+		var q2s = q2.is_answered ? -1000 : q2.votescore;
+		return q2s - q1s; 
+	});
+
+  while(questions.length > 4) {
+    questions.pop();
+  }
+	
+	var elements = [];
+	questions.forEach(function(question) {
+		var id = question.id;
+		var qNode = $(".q-"+id);
+		
+		var temp = $(".question-template");
+		var qdiv = temp.clone();
+		qdiv.find(".text").html(question.text);
+		qdiv.find(".votes").html(question.votescore);
+		qdiv.find(".markanswer").click(function() {
+			markAnswered(id);
+		});
+		
+		qdiv.attr("class", "question");
+		qdiv.addClass("q-"+id);
+		
+		if (qNode.size() > 0) {
+			qdiv.show();
+			if (question.is_answered) {
+				qdiv.css({ opacity: 0.5 });
+				qdiv.css("background", "#DDFFDD");
+				qdiv.find(".controls").hide();
+				qdiv.find(".teacher_controls").hide();
+			} else if (question.votescore <= 0) {
+				qdiv.css({ opacity: 0.5 });
+				qdiv.find(".votes").css("color", "red");
+				qdiv.css("background", "#FFDDDD");
+			} 
+		} else {
+			if (question.is_answered) {
+				qdiv.fadeTo(1000, 0.5);
+				qdiv.css("background", "#DDFFDD");
+				qdiv.find(".controls").hide();
+				qdiv.find(".teacher_controls").hide();
+			} else if (question.votescore <= 0) {
+				qdiv.fadeTo(1000, 0.5);
+				qdiv.find(".votes").css("color", "red");
+				qdiv.css("background", "#FFDDDD");
+			} else {
+				qdiv.fadeIn(1000);
+			}
+		}
+		elements.push(qdiv);
+	});
+	
+	$("#student-questions").html("");
+	elements.forEach(function(el) {
+		$("#student-questions").append(el);
+		MathJax.Hub.Queue(["Typeset",MathJax.Hub,el.get()]);
+	});
 }
 
 function updateApplicationState(data,error) {
