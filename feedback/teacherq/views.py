@@ -3,10 +3,11 @@ from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response, get_object_or_404, render
 from django.template import Context, loader, RequestContext
-from teacherq.models import Question, AnswerOption, UserProfile
+from teacherq.models import Question, AnswerOption, UserProfile, create_user_profile
 import studentq.models
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
+import teacherq.models
 
 def verify_logged_in(request):
     if not request.user.is_authenticated():
@@ -119,13 +120,19 @@ def showconfusion(request):
 def test(request):
 		
 	for n in range(0, 20):
-		newuser = User(username=("student"+n),password="p"+n)
+		un = "student"+str(n)
+		if (User.objects.filter(username=un).count() > 0):
+			continue
+		newuser = User(username=un,password="p"+str(n))
 	 	newuser.save()
 		create_user_profile(None, newuser, True)
 
 	for n in range(0, 5):
-		newuser = User(username="teacher"+n,password="p"+n, is_staff=True)
-	 	newuser.save()
+		un = "teacher"+str(n)
+		if (User.objects.filter(username=un).count() > 0):
+			continue
+		newuser = User(username=un,password="p"+str(n), is_staff=True)
+		newuser.save()
 		create_user_profile(None, newuser, True)
 	
 	
