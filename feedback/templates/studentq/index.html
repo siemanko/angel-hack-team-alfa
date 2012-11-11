@@ -1,12 +1,16 @@
 {% extends "fbcore/index.html" %}
 
 {% block menu %}
-<li>
-<a href="/studentq/">Questions</a>
-</li>  
+{% if not is_teacher %}
 <li>
   <a id="npa" onclick="attentionButton(true)" href="#">I DON'T GET THAT</a>
 </li>
+{% endif %}
+{% if is_teacher %}
+<li>
+  <a href="/teacherq">Teacher Panel</a>
+</li>
+{% endif %}
 {% endblock %}
 
 {% block scripts %}

@@ -1,7 +1,6 @@
 import json
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseBadRequest, Http404, HttpResponseRedirect
-from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import Context, loader, RequestContext
 from studentq.models import Question
@@ -80,6 +79,7 @@ def updatestate(request):
       q.save()
     elif action == 'mark':
       q.is_answered = True
+      q.votescore = -1000
       q.save()
     return HttpResponse('OK')
       
