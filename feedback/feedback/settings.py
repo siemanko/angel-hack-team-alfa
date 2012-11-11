@@ -5,6 +5,9 @@ from data_specific_to_me import *
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
+AUTH_PROFILE_MODULE = 'teacherq.UserProfile'
+
+
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )

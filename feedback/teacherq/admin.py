@@ -1,5 +1,5 @@
 from django.contrib import admin
-from teacherq.models import Question, AnswerOption, ActiveQuestion, User
+from teacherq.models import Question, AnswerOption, ActiveQuestion, UserProfile
 
 
 
@@ -16,4 +16,4 @@ class QuestionAdmin(admin.ModelAdmin):
 
 admin.site.register(ActiveQuestion)
 admin.site.register(Question, QuestionAdmin)
-admin.site.register(User)
+admin.site.register(UserProfile)

@@ -3,7 +3,7 @@ from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response, get_object_or_404, render
 from django.template import Context, loader, RequestContext
-from teacherq.models import Question, AnswerOption, ActiveQuestion, User
+from teacherq.models import Question, AnswerOption, ActiveQuestion
 
 def index(request):
 	questions = {}
@@ -74,9 +74,9 @@ def showanswers(request):
  		})
 
 def confusedstudents(request):
-	confused_users = User.objects.filter(is_confused=True).count()
-	smart_users = User.objects.filter(is_confused=False).count()
-	total_users = confused_users + smart_users
+	confused_users = 11 #User.objects.filter(is_confused=True).count()
+	smart_users = 0 #User.objects.filter(is_confused=False).count()
+	total_users = 11 #confused_users + smart_users
 	confusion_level = confused_users * 100 / total_users
 
 	response = { 'confusionLevel' : confusion_level }

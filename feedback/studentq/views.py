@@ -5,12 +5,11 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.template import Context, loader, RequestContext
 
 from studentq.models import Question
-from teacherq.models import User
 
 def index(request):
     return render_to_response('studentq/index.html', 
                               {
-                                'is_teacher' : User.objects.get(id=1).is_teacher
+                                'is_teacher' : request.user.get_profile().is_teacher
                               })
 
 def test(request):
@@ -70,10 +69,10 @@ def updatestate(request):
       q.save()
     return HttpResponse('OK')
       
-def updateattention(req):
-  user = User.objects.get(id=1)
-  if req.GET["change"] == "true":
-    user.is_confused = not user.is_confused
-    user.save()
-  response = { "isConfused" : user.is_confused}
+def updateattention(request):
+  user_profile = request.user.get_profile() 
+  if request.GET["change"] == "true":
+    user_profile.is_confused = not user_profile.is_confused
+    user_profile.save()
+  response = { "isConfused" : user_profile.is_confused}
   return HttpResponse(json.dumps(response), mimetype="application/json")

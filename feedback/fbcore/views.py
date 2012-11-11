@@ -9,7 +9,7 @@ def index(request):
       return HttpResponseRedirect('login')
     else:
       return render_to_response('fbcore/index.html', {
-                                                        'is_teacher' : request.user.is_staff,
+                                                        'is_teacher' : request.user.get_profile().is_teacher,
                                                      })
 
 def login(request):

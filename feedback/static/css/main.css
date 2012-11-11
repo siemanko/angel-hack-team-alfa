@@ -178,8 +178,8 @@ body {
         padding-top: 30px;
 }
 
-.student_ask_question textarea, input {
-		width: 800px;
+#addQuestionModal textarea, input {
+		width: 500px;
 		height: 60px;
         font-size: 20px;
         font-family: "Fabada";
