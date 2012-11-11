@@ -114,3 +114,7 @@ def confusedstudents(request):
 def showconfusion(request):
 	return render(request, 'teacherq/showconfusion.html', {} )
 
+
+def test(request):
+	
+	return HttpResponse('test succesfull')
