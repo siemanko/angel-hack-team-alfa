@@ -6,6 +6,7 @@ from django.template import Context, loader, RequestContext
 from teacherq.models import Question, AnswerOption, UserProfile
 import studentq.models
 from django.core.urlresolvers import reverse
+from django.contrib.auth.models import User
 
 def verify_logged_in(request):
     if not request.user.is_authenticated():
@@ -116,5 +117,17 @@ def showconfusion(request):
 
 
 def test(request):
+		
+	for n in range(0, 20):
+		newuser = User(username="student"+n,"p"+n)
+	 	newuser.save()
+		create_user_profile(None, newuser, True)
+
+	for n in range(0, 5):
+		newuser = User(username="teacher"+n,"p"+n, is_staff=True)
+	 	newuser.save()
+		create_user_profile(None, newuser, True)
 	
+	
+
 	return HttpResponse('test succesfull')
