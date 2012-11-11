@@ -20,8 +20,15 @@
   <a id="npa" onclick="attentionButton(true)" href="#">I DON'T GET THAT</a>
 </li>
 {% endblock %}
+
 {% block specific_content %}
 Loading questions...
+{% endblock %}
+
+{% block main_view_footer %}
+<div class="question_controls" style="position: relative; left: -160px; top: 10px;">
+	<button class="btn" onclick="dialogNewQuestion()">+ Add Question</button>
+</div>
 {% endblock %}
 
 {% block footer %}
@@ -41,14 +48,14 @@ Loading questions...
 		  <button style="cursor:hand" data-loading-text="-" class="btn downvote">&nbsp;-1</button>
 		</div>
 	</div>
-<!--
-	<div class="text">This a sample question that some stupid did.. {% if is_teacher %} (teacher) {% endif %}</div>
-	<div class="controls" >
-		<div class="votes" >45</div>
-    <div class=" btn-group btn-group-vertical">
-		  <button style="cursor:hand" style="margin-bottom:20px" data-loading-text="+" class="btn upvote">+1</button>
-		  <button style="cursor:hand" data-loading-text="-" class="btn downvote">&nbsp;-1</button>
-    </div>
--->
+</div>
+
+<div id="addQuestionDialog" style="display: none;">
+	<div class="student_ask_question">
+        <div class="header"></div>
+        <textarea name="question" id="student_question" value="Write your question here?"></textarea>
+        <button data-loading-text="Ask Question" class="btn btn-info" onclick="finalizeAskQuestion(false)">Cancel</button>
+        <button data-loading-text="Ask Question" class="btn btn-info" onclick="finalizeAskQuestion(true)">Ask Question</button>
+  </div>
 </div>
 {% endblock %}

@@ -140,3 +140,57 @@ body {
         left:630px;
 }
 
+.black_overlay
+{
+	height:100%;
+	width:100%;
+	position:fixed;
+	left:0;
+	top:0;
+	z-index:10 !important;
+	background-color:black;
+	filter: alpha(opacity=55); /* internet explorer */
+	-khtml-opacity: 0.55;      /* khtml, old safari */
+	-moz-opacity: 0.55;       /* mozilla, netscape */
+	opacity: 0.55;           /* fx, safari, opera */
+}
+
+#addQuestionDialog {
+	position: absolute;
+	top: 100px;
+	left: 90px;
+	z-index:19 !important;
+}
+
+.student_ask_question {
+        border-radius: 8px;
+        border: solid;
+        border-width: 4px;
+        border-color: rgba(210,226,233,.8);
+        position: absolute;
+        width: 850px;
+        height: 130px;
+        left: 20%;
+        top: 30%;
+        background-color: rgb(222,236,243);
+        box-shadow: 10px 10px 10px #AAAABB;
+        padding-left: 35px;
+        padding-top: 30px;
+}
+
+.student_ask_question textarea, input {
+		width: 800px;
+		height: 60px;
+        font-size: 20px;
+        font-family: "Fabada";
+        resize: none;
+        display:block;
+}
+
+.student_ask_question button {
+        font-size: 22px;
+        font-family: "Fabada";
+        position:relative;
+        top:0px;
+        left:530px;
+}

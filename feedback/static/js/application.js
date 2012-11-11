@@ -49,7 +49,7 @@ $.ajax({
 });
 }
 
-function addQuestion(textcontent) {
+function addQuestion(textcontent, callback) {
 	$.ajax({
 		type: 'POST',
 		url: "/studentq/updatestate",
@@ -58,11 +58,12 @@ function addQuestion(textcontent) {
 			text : textcontent
 		},
 		success: function(data) {
-			alert("ok - question added");
 			updateNow();
+			callback();
 		},
   		error: function(jqXHR, textStatus, errorThrown) {
   			alert("Cannot save");
+  			callback();
   		}
 	});
 }
@@ -175,6 +176,29 @@ console.log(questions.length);
 	});
 }
 
+// Dialogs
+function dialogNewQuestion() {
+	$("#dialogoverlay").fadeTo(300, 0.55);
+	$("#addQuestionDialog").fadeIn(300);
+}
+
+function finalizeAskQuestion(result) {
+	function hideDialog() {
+		$("#dialogoverlay").fadeOut(300);
+		$("#addQuestionDialog").fadeOut(300);
+	}
+	
+	if (result) {
+		var text = $("#student_question").val();
+		$("#student_question").val("");
+		addQuestion(text, function() {
+			hideDialog();
+			updateNow();
+		});
+	} else {
+		hideDialog();
+	}
+}
 
 // Mocks
 

@@ -31,17 +31,19 @@
         </div>  
 
   <div class="container-fluid">
-                <div class="row"><br>
+    <div class="row"><br>
       <div id="right_container" class="span12 al-element">
         {% block specific_content %}  
           {% if is_teacher %}
             We have badass over here.
           {% endif %}
         {% endblock %}
-        </div>
       </div>
+      {% block main_view_footer %} {% endblock %}
     </div>
   </div>
+  
+  
  
  
         {% block footer %}
