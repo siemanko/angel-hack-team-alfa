@@ -27,6 +27,9 @@ def index(request):
 
 def start(request):
     return render_to_response('studentq/start.html', {})
+
+def pacman(request):
+    return render_to_response('studentq/pacman.html', {})
     
 def test(request):
     return render_to_response('studentq/test.html', {})
