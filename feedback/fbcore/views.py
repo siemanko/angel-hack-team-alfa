@@ -27,4 +27,4 @@ def login(request):
 
 def logout(request):
     django.contrib.auth.logout(request)
-    return HttpResponse('Logged out')
+    return render_to_response('fbcore/auth.html', { 'loggedout' : True })

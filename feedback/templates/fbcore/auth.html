@@ -1,4 +1,5 @@
 {% if error %} Wrong username and/or password. {% endif %} 
+{% if loggedout %} You logged out. {% endif %}
 <form action="/login" method="post">
 <input name="username" />
 <input name="password" />
