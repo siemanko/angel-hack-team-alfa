@@ -1,4 +1,5 @@
 var appUpdateProc; //update function
+var heartbeatAddr;
 
 $(document).ready(function() {
 	heartbeat();
@@ -9,7 +10,7 @@ var apptime = 1;
 var nextUpdate = 1000;
 function heartbeat() {
 	apptime += 10;
-	var addr = "/studentq/getstate";
+	var addr = heartbeatAddr;
 	if (apptime > nextUpdate && nextUpdate > 0) {
 		nextUpdate = -1;
 		$.ajax({
@@ -130,6 +131,12 @@ function updateNow() {
 }
 
 function ignoreUpdate(data,error) {
+}
+
+function teacherAppUpdate(data,error) {
+	if (data) {
+		drawChart(data.confusionLevel);
+	}
 }
 
 function updateApplicationState(data,error) {

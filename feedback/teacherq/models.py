@@ -28,6 +28,8 @@ class UserProfile(models.Model):
     # Other fields here
     is_teacher = models.BooleanField()
     is_confused = models.BooleanField()
+    def __unicode__(self):
+      return self.user.__unicode__()
 
 def create_user_profile(sender, instance, created, **kwargs):
     if created:

@@ -1,12 +1,26 @@
 import json
+from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseBadRequest, Http404, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import Context, loader, RequestContext
-
 from studentq.models import Question
 
+def verify_logged_in(request):
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect(reverse('login'))
+    else:
+        return None
+"""
+    ver = verify_logged_in(request)
+    if ver:
+      return ver
+"""
+
 def index(request):
+    ver = verify_logged_in(request)
+    if ver:
+      return ver
     return render_to_response('studentq/index.html', 
                               {
                                 'is_teacher' : request.user.get_profile().is_teacher
